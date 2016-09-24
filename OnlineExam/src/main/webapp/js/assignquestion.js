@@ -99,6 +99,6 @@ function scrolify(tblAsJQueryObject, height) {
 }
 
 $(document).ready(function() {
-    scrolify($('#tblNeedsScrolling'), 260);
-    scrolify($('#tbl1NeedsScrolling'), 260); // 160 is height
+    scrolify($('#tblNeedsScrolling'), 360);
+    scrolify($('#tbl1NeedsScrolling'), 360); // 160 is height
 });

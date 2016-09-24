@@ -62,16 +62,16 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      *     Exception is raised during database connection.
      */
     public int insertChoice(Choice choice) { //throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
         int choiceId = 0;
-        try {
+        choiceId = (int) getSession().save(choice);
+        /*try {
             choiceId = (int) session.save(choice);
         } catch (HibernateException e) {
             //FileUtil.logError("Exception occured in insertChoice method in ChoiceDao" + e);
             //throw new DataException(e.getMessage());
         } finally {
             session.close();
-        }
+        }*/
          return choiceId;
     }
 
@@ -90,9 +90,10 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      *     Exception is raised during database connection.
      */
     public Choice retrieveChoiceDetailById(int choiceId) { //throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
         Choice choice = null;
-        try {
+        choice = (Choice) getSession().get(Choice.class, choiceId);
+        return choice;
+        /*try {
             choice = (Choice) session.get(Choice.class, choiceId);
         } catch (HibernateException e) {
             //FileUtil.logError("Exception occured in retrieveChoiceDetailById method in ChoiceDao" + e);
@@ -100,7 +101,7 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
         } finally {
             session.close();
              return choice;
-        }
+        }*/
     }
 
     /**
@@ -119,10 +120,12 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      *     Exception is raised during database connection.
      */
     public void assignQuestion(int choiceId, int questionId) { //throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
-        try {
-            Choice choice = (Choice) session.get(Choice.class, choiceId);
-            Question question = (Question) session.get(Question.class, questionId);
+        Choice choice = (Choice) getSession().get(Choice.class, choiceId);
+        Question question = (Question) getSession().get(Question.class, questionId);
+        choice.setQuestionId(question);
+        /*try {
+            Choice choice = (Choice) getSession().get(Choice.class, choiceId);
+            Question question = (Question) getSession().get(Question.class, questionId);
             choice.setQuestionId(question);
         } catch (HibernateException e) {
             //FileUtil.logError("Exception occured in assignQuestion method in ChoiceDao" + e);
@@ -130,6 +133,6 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
               //      + "to choiceId" + " " + choiceId);
         } finally {
             session.close();
-        }
+        }*/
     }
 }

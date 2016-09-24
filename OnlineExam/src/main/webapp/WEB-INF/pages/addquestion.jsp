@@ -1,3 +1,4 @@
+<%@ include file="/common/taglibs.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -15,6 +16,7 @@
         <script src="js/sweetalert2.js"></script>
         <script src="js/jquery-1.11.3.min.js"></script>
         <script src="js/questionvalidation.js"></script>
+        <script src="js/checkifcorrect.js"></script>
         <script>
             $(function() {
             	$('#colorselector').change(function() {
@@ -24,12 +26,6 @@
             });
         </script>
     </head>
-    <c:if test="${null == sessionScope['role']}">
-        <c:redirect url="loginpage"/>
-    </c:if>
-    <c:if test="${'Admin' != sessionScope['role']}">
-        <c:redirect url="loginpage"/>
-    </c:if>
     <body>
         <c:if test="${null != SuccessMessage }">
             <script>
@@ -129,7 +125,7 @@
                                     </th>
                                     <td><input name="choices[${status.index}].choiceName"
                                         value="${choice.choiceName}" required="required"></td>
-                                    <th><span>IfCorrect</span></th>
+                                    <th><span>IsCorrect</span></th>
                                     <td><input name="checkboxofchoose" type="checkbox" id="<c:out value='${count}'/>"
                                         onchange="correct()"></td>
                                     <td><input type="hidden"
@@ -174,7 +170,7 @@
                                     </th>
                                     <td><input name="choices[${status.index}].choiceName"
                                         value="${choice.choiceName}" required="required"></td>
-                                    <th><span>IfCorrect</span></th>
+                                    <th><span>IsCorrect</span></th>
                                     <td><input name="multipleCheckBox" type="checkbox" id="<c:out value='${count}'/>"
                                         onchange="correct()">
                                     <td><input type="hidden"
@@ -194,63 +190,6 @@
             </div>
         </div>
     </body>
-    <script type="text/javascript">
-        function correct() {
-        	var checkbox1 = document.getElementById("1").checked;
-        	if (checkbox1) {
-        		document.getElementById("choose1").value = 1;
-        	} else {
-        		document.getElementById("choose1").value = 0;
-        	}
-        	var checkbox2 = document.getElementById("2").checked;
-        	if (checkbox2) {
-        		document.getElementById("choose2").value = 1;
-        	} else {
-        		document.getElementById("choose2").value = 0;
-        	}
-        	var checkbox3 = document.getElementById("3").checked;
-        	if (checkbox3) {
-        		document.getElementById("choose3").value = 1;
-        	} else {
-        		document.getElementById("choose3").value = 0;
-        	}
-        	var checkbox4 = document.getElementById("4").checked;
-        	if (checkbox4) {
-        		document.getElementById("choose4").value = 1;
-        	} else {
-        		document.getElementById("choose4").value = 0;
-        	}
-        	var checkbox5 = document.getElementById("21").checked;
-        	if (checkbox5) {
-        		document.getElementById("multiple1").value = 1;
-        	} else {
-        		document.getElementById("multiple1").value = 0;
-        	}
-        	var checkbox5 = document.getElementById("22").checked;
-        	if (checkbox5) {
-        		document.getElementById("multiple2").value = 1;
-        	} else {
-        		document.getElementById("multiple2").value = 0;
-        	}
-        	var checkbox6 = document.getElementById("23").checked;
-        	if (checkbox6) {
-        		document.getElementById("multiple3").value = 1;
-        	} else {
-        		document.getElementById("multiple3").value = 0;
-        	}
-        	var checkbox7 = document.getElementById("24").checked;
-        	if (checkbox7) {
-        		document.getElementById("multiple4").value = 1;
-        	} else {
-        		document.getElementById("multiple4").value = 0;
-        	}
-        	var checkbox8 = document.getElementById("25").checked;
-        	if (checkbox8) {
-        		document.getElementById("multiple5").value = 1;
-        	} else {
-        		document.getElementById("multiple5").value = 0;
-        	}
-        }
-    </script>
 </html>
+
 

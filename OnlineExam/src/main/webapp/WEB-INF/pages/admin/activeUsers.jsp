@@ -15,7 +15,7 @@
         <a href="${ctx}/home" class="btn btn-primary">
             <i class="icon-ok icon-white"></i> <fmt:message key="button.done"/></a>
     </div>
-     <a href="/insertquestion" class="btn btn-primary">Gotoaddquestion</a>
+
     <display:table name="applicationScope.userNames" id="user" cellspacing="0" cellpadding="0"
                    defaultsort="1" class="table table-condensed table-striped table-hover" pagesize="50" requestURI="">
         <display:column property="username" escapeXml="true" style="width: 30%" titleKey="user.username"
@@ -32,5 +32,8 @@
         <display:setProperty name="paging.banner.item_name" value="user"/>
         <display:setProperty name="paging.banner.items_name" value="users"/>
     </display:table>
+    <a href="insertexamdetails">Add Exam</a>
+    <a href="insertquestion">Add Question</a>
+    <a href="allocatequestionpage">Allocate Question</a>
 </div>
 </body>

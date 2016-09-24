@@ -18,6 +18,7 @@ package com.i2i.dao.hibernate;
 
 import com.i2i.dao.QuestionDao;
 import com.i2i.model.Question;
+import com.i2i.model.QuestionType;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -61,17 +62,16 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
      *     Exception is raised during database connection.
      */
     public int insertQuestion(Question question) {  //throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
         int questionId = 0;
-        try {
-            questionId = (int) session.save(question);
+        questionId = (int) getSession().save(question);
+        return questionId;
+        /*try {
+            questionId = (int) getSession().save(question);
         } catch (HibernateException e) {
             //FileUtil.logError("Error occured in insertQuestion method in QuestionDao" + e);
             //throw new DataException("Cannot able to add Question. Kindly try again");
-        } finally {
-            session.close();
-        }
-         return questionId;
+        } 
+         return questionId;*/
     }
 
     /**
@@ -90,9 +90,11 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
      *     Exception is raised during database connection.
      */
     public void assignQuestionType(int typeId, int questionId) { // throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
-        try {
-            Question question = (Question) session.get(Question.class, questionId);
+        Question question = (Question) getSession().get(Question.class, questionId);
+        QuestionType questionType = (QuestionType) getSession().get(QuestionType.class, typeId);
+        question.setTypeId(questionType);
+        /*try {
+            Question question = (Question) getSession().get(Question.class, questionId);
             //QuestionType questionType = (QuestionType) session.get(QuestionType.class, typeId);
             //question.setTypeId(questionType);
         } catch (HibernateException e) {
@@ -101,7 +103,7 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
                    // "Error occured while assigning typeId" + " " + typeId + " " + "to questionId" + " " + questionId);
         } finally {
             session.close();
-        }
+        }*/
     }
 
     /**
@@ -119,16 +121,16 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
      *     Exception is raised during database connection.
      */
     public Question retrieveQuestionDetailById(int questionId) { // throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
         Question question = null;
-        try {
-            question = (Question) session.get(Question.class, questionId);
+        question = (Question) getSession().get(Question.class, questionId);
+       /* try {
+            question = (Question) getSession().get(Question.class, questionId);
         } catch (HibernateException e) {
             //FileUtil.logError("Error occured in retrieveQuestionDetailById method in QuestionDao" + e);
             //throw new DataException("Error occured while retrieving details for given questionId" + " " + questionId);
         } finally {
             session.close();
-        }
+        }*/
         return question;
     }
 
@@ -146,16 +148,16 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
      */
     @SuppressWarnings("unchecked")
     public List<Question> retrieveAllQuestions() { // throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
         List<Question> questionList = null;
-        try {
+        questionList = getSession().createQuery("from Question").list();
+        /*try {
             questionList = session.createQuery("from Question").list();
         } catch (HibernateException e) {
             //FileUtil.logError("Error occured in retrieveAllQuestions method in QuestionDao" + e);
             //throw new DataException("Error occured while retrieving details for all questions");
         } finally {
             session.close();
-        }
+        }*/
         return questionList;
     }
 }

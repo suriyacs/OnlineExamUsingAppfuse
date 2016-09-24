@@ -26,6 +26,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import com.i2i.model.Choice;
 import com.i2i.model.QuestionType;
+import com.i2i.model.Exam;
 
 //import com.i2i.model.Exam;
 
@@ -59,9 +60,9 @@ public class Question extends BaseObject implements Serializable {
     @JoinColumn(name = "question_id")
     List<Choice> choices = new ArrayList<Choice>();
 
-    /*@LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "questions")
-    Set<Exam> exams = new HashSet<Exam>();*/
+    Set<Exam> exams = new HashSet<Exam>();
 
     public Question() {
 
@@ -99,7 +100,7 @@ public class Question extends BaseObject implements Serializable {
         this.choices = choice;
     }
 
-    /*@LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(mappedBy = "questions")
     public void setExams(Set<Exam> exam) {
         this.exams.addAll(exam);
@@ -107,7 +108,7 @@ public class Question extends BaseObject implements Serializable {
 
     public Set<Exam> getExams() {
         return exams;
-    }*/
+    }
 
     public List<Choice> getChoices() {
         return this.choices;

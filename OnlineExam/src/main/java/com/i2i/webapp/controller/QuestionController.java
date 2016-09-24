@@ -75,13 +75,15 @@ public class QuestionController {
             @RequestParam("questionType") String questionType) {
         try {
             int questionId = questionManager.addQuestion(question.getQuestionName());
-            //questionManager.allocateQuestionType(Integer.parseInt(questionType), questionId);
+            System.out.println("in Controller questionType:"+questionType);
+            questionManager.allocateQuestionType(Integer.parseInt(questionType), questionId);
             for (Choice choice : question.getChoices()) {
                 choiceManager.allocateQuestion(choiceManager.addChoice(choice.getChoiceName(), (choice.getIsCorrect())),
                         questionId);
             }
             model.addAttribute("SuccessMessage", "Added Successfully..!!");
         } catch (Exception e) {
+            System.out.println(e.getMessage().toString());
             model.addAttribute("insertQuestionMessage", (e.toString()));
         } /*catch (NumberFormatException e) {
             model.addAttribute("insertQuestionMessage", "Error occured during conversion of" + " " + questionType);
@@ -139,10 +141,11 @@ public class QuestionController {
         try {
             int questionId = questionManager.addQuestion(questionName);
             int choiceId = choiceManager.addChoice(answer, Integer.parseInt(correctAnswer));
-            //questionManager.allocateQuestionType(1, questionId);
+            questionManager.allocateQuestionType(1, questionId);
             choiceManager.allocateQuestion(choiceId, questionId);
             model.addAttribute("SuccessMessage", correctAnswer + " " + "InserTion Success");
         } catch (Exception e) {
+            System.out.println(e.getMessage().toString());
             model.addAttribute("insertQuestionMessage", (e.toString()));
         } /*catch (NumberFormatException e) {
             model.addAttribute("insertQuestionMessage",

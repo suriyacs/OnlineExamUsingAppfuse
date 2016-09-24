@@ -32,7 +32,6 @@
             </div>
         </c:if>
     </spring:bind>
-
     <form:form commandName="user" method="post" action="userform" id="userForm" autocomplete="off"
                cssClass="well" onsubmit="return validateUser(this)">
         <form:hidden path="id"/>

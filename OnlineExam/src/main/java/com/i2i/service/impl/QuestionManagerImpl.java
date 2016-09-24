@@ -68,6 +68,8 @@ public class QuestionManagerImpl extends GenericManagerImpl<Question, Integer> i
      *     time of database connection.
      */
     public void allocateQuestionType(int typeId, int questionId) {// throws DataException {
+    System.out.println("in Service questionType:"+typeId);
+    System.out.println("in Service questionId:"+questionId);
         questionDao.assignQuestionType(typeId, questionId);
     }
 

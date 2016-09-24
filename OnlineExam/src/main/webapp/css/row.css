@@ -1,79 +1,25 @@
-/* Original css for displaying question*/
-.center-div {
-	width:100%;
-	height:100%;
-	border:3px solid red;
+.center-container {
+	width:60%;
 }
 .questiondiv {
-	float:left;
     background-color: rgba(0, 0, 0, 0.1);
 	width:60%;
+	margin-left:20%;
    -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4); 
     -moz-box-shadow: 0px 1px 6px rgba(23, 69, 88, .5);
     -webkit-border-radius: 12px;
     -moz-border-radius: 7px;  
     border-radius: 7px;
     -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-    background-image: url("http://www.restral.com/wp-content/uploads/2016/08/bg-polygon-grey.jpg");
-    background-attachment: fixed;
-    border:3px solid green;
-}
-
-.sidequestion {
-	width:20%;
-	height:100%;
-	float:left;
-    -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4); 
-    -moz-box-shadow: 0px 1px 6px rgba(23, 69, 88, .5);
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 7px;  
-    border-radius: 7px;
-    -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-    background-image: url("http://www.restral.com/wp-content/uploads/2016/08/bg-polygon-grey.jpg");
-    background-attachment: fixed;
-
-	border:3px solid green;
-}
-.sideanswer {
-	width:20%;
-	height:100%;
-	float:left;
-	border:3px solid blue;
-	padding-top:2%;
-	-webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4); 
-    -moz-box-shadow: 0px 1px 6px rgba(23, 69, 88, .5);
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 7px;  
-    border-radius: 7px;
-    -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-    background-image: url("http://www.restral.com/wp-content/uploads/2016/08/bg-polygon-grey.jpg");
-    background-attachment: fixed;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-#numberCircle {
-    border-radius: 50%;
-    width: 54px;
-    height: 54px;
-    padding: 8px;
-    background: #fff;
-    border: 2px solid #660066;
-    color: black;
-    text-align: center;
-    font: 32px Arial, sans-serif;
-    display: inline-block;
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
 }
 h2 {
 	font-family:Book Antiqua;
 }
-h5, h1 {
-	 font: italic bold 12px/30px Georgia, serif;
-	 font-weight:bold;
-	 text-align:center;
+h4 {
+	text-align: center;
+	font-style:initial;
 }
-
 img {
 	width:50px;
 	height:50px;
@@ -94,29 +40,17 @@ img {
 div {
 	font-size: 105%;
 }
-.center-button {
-	margin: 0;
-    background-color: transparent;
-	text-align: center;
-}
 label {
 	 font-size: 100%;
 }
 .usertab {
-	width:100%;
-	height:15%;
+	float:left;
+	width=40%;
 	font-family:fantasy;
-	border:3px solid red;
-}
-#headertab {
-	width: 23%;
-	float:left;
-	margin-left:28%;
-	text-align:center;
-}
-.imagediv {
-	width:10%;
-	float:left;
+	size:20px;
+	weight:bold;
+	style:italic;
+	variant:small caps;
 }
 .radio-inline {
 	padding-right:65px;

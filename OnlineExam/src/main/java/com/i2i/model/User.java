@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -36,6 +37,7 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.i2i.model.Exam;
 /**
  * This class represents the basic "user" object in AppFuse that allows for authentication
  * and user management.  It implements Spring Security's UserDetails interface.
@@ -58,7 +60,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String confirmPassword;
     private String passwordHint;
     private String firstName;                   // required
-    private String lastName;                    // required
+    private String lastName; 
+    private String fatherName;                   // required
     private String email;                       // required; unique
     private String phoneNumber;
     private String website;
@@ -69,6 +72,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
+    //private Set<Exam> exams = new HashSet<Exam>();
+
 
     /**
      * Default constructor - creates a new instance with no values set.
@@ -128,6 +133,12 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Field
     public String getLastName() {
         return lastName;
+    }
+    
+    @Column(name = "father_name", nullable = false, length = 50)
+    @Field
+    public String getFatherName() {
+        return fatherName;
     }
 
     @Column(nullable = false, unique = true)
@@ -228,7 +239,12 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public boolean isAccountExpired() {
         return accountExpired;
     }
-
+    
+    /*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "users")
+    public Set<Exam> getExams() {
+        return exams;
+    }*/
+    
     /**
      * @see org.springframework.security.core.userdetails.UserDetails#isAccountNonExpired()
      * @return true if account is still active
@@ -293,6 +309,11 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
 
     public void setEmail(String email) {
         this.email = email;
@@ -321,7 +342,11 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
+    
+    /*public void setExams(Set<Exam> exams) {
+        this.exams.addAll(exams);
+    }*/
+    
     public void setAccountExpired(boolean accountExpired) {
         this.accountExpired = accountExpired;
     }

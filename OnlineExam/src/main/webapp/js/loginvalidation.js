@@ -41,8 +41,9 @@ function validateUserRegisterationForm() {
             type: "error"
         });
         return false;
+        InsertExamMessage
     } else if (!(mobileNumber.match(phoneno))) {
-    	swal({
+        swal({
             title: "Error",
             text: "Not a valid Mobile Number",
             type: "error"
@@ -84,5 +85,6 @@ function validateForm() {
             type: "error"
         });
         return false;
+        InsertExamMessage
     }
 }
