@@ -1,5 +1,6 @@
 package com.i2i.webapp.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import com.i2i.exception.DataException;
 import com.i2i.model.Answer;
 import com.i2i.model.User;
 import com.i2i.service.QuestionManager;
+import com.i2i.service.UserManager;
 /*
 import exception.DataException;
 import model.User;
@@ -35,9 +37,10 @@ import service.ResultService;
  *
  */
 @Controller
-public class ExamController {
+public class ExamController { 
     private ExamManager examManager = null;
     private QuestionManager questionManager = null;
+    private UserManager userManager = null;
     
     @Autowired
     public void setExamManager(final ExamManager examManager) {
@@ -47,6 +50,11 @@ public class ExamController {
     @Autowired
     public void setQuestionManager(final QuestionManager questionManager) {
         this.questionManager = questionManager;
+    }
+    
+    @Autowired
+    public void setUserManager(final UserManager userManager) {
+        this.userManager = userManager;
     }
     /**
      * <p>
@@ -262,34 +270,34 @@ public class ExamController {
      *     the selected exam or to store the name of the user and exam as
      *     well as instance of an exam.
      * @return string
-     *     Contains name of the java server page which needs to be loaded.
+     *     Contains name of the java server page wuserNamehich needs to be loaded.
      */
-    /*@RequestMapping(value = "/taketest")
-    public String redirectToQuestionPage(HttpSession session,@RequestParam("test")String testId, ModelMap model) {
+    @RequestMapping(value = "/taketest")
+    public String redirectToQuestionPage(final HttpServletRequest request,@RequestParam("test")String testId, ModelMap model) {
         User user = null;        
         try {
-            user = (User) session.getAttribute("user");
-            if (examService.checkIfUserAlreadyAttendedThisTest(testId, user)) {
+        	user = userManager.getUserByUsername(request.getRemoteUser());
+            if (examManager.checkIfUserAlreadyAttendedThisTest(testId, user)) {
                 model.addAttribute("ExamMessage", "Sorry.!!you already attended this exam..!!");
                 return "userpage";
             }
-            examService.addUserToExam(testId, user.getUserId());
-            Exam exam = examService.getExamById(Integer.parseInt(testId));
+            examManager.addUserToExam(testId, user.getId());
+            Exam exam = examManager.getExamById(Integer.parseInt(testId));
             for (int answerCount = 0; answerCount < Integer.parseInt(exam.getNoOfAllocatedQuestions()); answerCount++) {
                 exam.addAnswer(new Answer());
             }
-            model.addAttribute("userName", user.getUserName());
+            model.addAttribute("userName", user.getUsername());
             model.addAttribute("examName", exam.getExamName());
             model.addAttribute("testId", testId);
             model.addAttribute("exam", exam);
         } catch (DataException e) {
-            model.addAttribute("insertQuestionMessage", (e.getMessage().toString()));
+            model.addAttribute("questionMessage", (e.getMessage().toString()));
         } catch (NumberFormatException e) {
-            model.addAttribute("insertQuestionMessage",
+            model.addAttribute("questionMessage",
                     "Error occured during conversion of" + " " + testId + " " + "while allocting the exam");
         }
         return "questionpageforuser";
-    }*/
+    }
 
     /**
      * <p>

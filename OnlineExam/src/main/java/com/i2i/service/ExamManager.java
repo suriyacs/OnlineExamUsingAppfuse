@@ -4,9 +4,10 @@ import java.util.List;
 
 import com.i2i.exception.DataException;
 import com.i2i.model.Exam;
+import com.i2i.model.User;
 /*import exception.DataException;
 import model.Exam;
-import model.User;
+
 
 /**
  * <p>
@@ -110,9 +111,7 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    /*public void addUserToExam(String examId, int userId) throws DataException {
-        examDao.assignUserToExam(Integer.parseInt(examId), userId);
-    }*/
+    public void addUserToExam(String examId, Long userId) throws DataException;
 
     /**
      * Method which accept the request and retrieve the exam details of given
@@ -126,4 +125,5 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     time of database connection.
      */
      Exam getExamById(int examId) throws DataException;
+     public boolean checkIfUserAlreadyAttendedThisTest(String testId, User user);
 }

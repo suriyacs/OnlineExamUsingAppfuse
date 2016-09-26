@@ -24,6 +24,8 @@ import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -71,7 +73,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
-    //private Set<Exam> exams = new HashSet<Exam>();
+    private Set<Exam> exams = new HashSet<Exam>();
 
 
     /**
@@ -177,6 +179,15 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public Set<Role> getRoles() {
         return roles;
     }
+    
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Userexam", joinColumns = {
+            @JoinColumn(name = "user_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+                    @JoinColumn(name = "exam_id", nullable = false, updatable = false) })
+    public Set<Exam> getExams() {
+        return exams;
+    }
 
     /**
      * Convert user roles to LabelValue objects for convenience.
@@ -232,11 +243,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public boolean isAccountExpired() {
         return accountExpired;
     }
-    
-    /*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "users")
-    public Set<Exam> getExams() {
-        return exams;
-    }*/
     
     /**
      * @see org.springframework.security.core.userdetails.UserDetails#isAccountNonExpired()
@@ -331,9 +337,9 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.enabled = enabled;
     }
     
-    /*public void setExams(Set<Exam> exams) {
-        this.exams.addAll(exams);
-    }*/
+    public void setExams(Set<Exam> exams) {
+        this.exams = exams;
+    }
     
     public void setAccountExpired(boolean accountExpired) {
         this.accountExpired = accountExpired;

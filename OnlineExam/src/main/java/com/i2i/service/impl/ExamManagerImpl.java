@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.i2i.dao.ExamDao;
 import com.i2i.model.Exam;
+import com.i2i.model.User;
 import com.i2i.service.ExamManager;
 import com.i2i.exception.DataException;
 /**
@@ -134,9 +135,11 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    /*public void addUserToExam(String examId, int userId) throws DataException {
-        examDao.assignUserToExam(Integer.parseInt(examId), userId);
-    }*/
+    public void addUserToExam(String examId, Long userId) throws DataException {
+        if (!(examDao.assignUserToExam(Integer.parseInt(examId), userId))) {
+        	throw new DataException("Sorry!!Can't Shedule This Exam to you.Try Again.!!");
+        }
+    }
 
     /**
      * Method which accept the request and retrieve the exam details of given
@@ -153,7 +156,7 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
         return examDao.retrieveExamById(examId);
     }
 
-    /*public boolean checkIfUserAlreadyAttendedThisTest(String testId, User user) {
+    public boolean checkIfUserAlreadyAttendedThisTest(String testId, User user) {
         if (null != user.getExams()) {
             for (Exam exam : user.getExams()) {
                 if (exam.getExamId() == Integer.parseInt(testId)) {
@@ -162,5 +165,5 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
             }
         }
         return false;
-    }*/
+    }
 }

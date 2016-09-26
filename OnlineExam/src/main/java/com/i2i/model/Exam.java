@@ -63,13 +63,6 @@ public class Exam {
     List<Question> questions = new ArrayList<Question>();
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "Userexam", joinColumns = {
-            @JoinColumn(name = "exam_id", nullable = false, updatable = false) }, inverseJoinColumns = {
-                    @JoinColumn(name = "id", nullable = false, updatable = false) })
-    Set<User> users = new HashSet<User>();
-
-    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "answerId")
     List<Answer> answers = new ArrayList<Answer>();
 
@@ -143,11 +136,11 @@ public class Exam {
         this.answers.add(answer);
     }
 
-    public Set<User> getUsers() {
+    /*public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users.addAll(users);
-    }
+    }*/
 }

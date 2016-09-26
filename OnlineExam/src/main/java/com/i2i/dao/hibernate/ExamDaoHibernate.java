@@ -13,6 +13,7 @@ import com.i2i.dao.ExamDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Exam;
 import com.i2i.model.Question;
+import com.i2i.model.User;
 import com.i2i.util.FileUtil;
 /*import dbconnection.DataBaseConnection;
 import exception.DataException;
@@ -160,32 +161,23 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-   /* @SuppressWarnings("finally")
-    public Exam assignUserToExam(int examId, int userId) throws DataException {
-        Session session = factory.openSession();
+    public boolean assignUserToExam(int examId, Long userId) throws DataException {
         Exam exam = null;
         try {
             Set<User> userSet = new HashSet<User>();
             Set<Exam> examSet = new HashSet<Exam>();
-            Transaction transaction = session.beginTransaction();
-            exam = (Exam) session.get(Exam.class, examId);
-            User user = (User) session.get(User.class, userId);
+            exam = (Exam) getSession().get(Exam.class, examId);
+            User user = (User) getSession().get(User.class, userId);
             userSet.add(user);
-            exam.setUsers(userSet);
             examSet.add(exam);
             user.setExams(examSet);
-            session.save(user);
-            session.save(exam);
-            transaction.commit();
+            return true;
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in assignUserToExam method in ExamDao" + e);
             throw new DataException(
                     "Error occured while allocation userId" + " " + userId + " " + "to examId" + " " + examId);
-        } finally {
-            session.close();
-            return exam;
         }
-    }*/
+    }   
 
     /**
      * <p>

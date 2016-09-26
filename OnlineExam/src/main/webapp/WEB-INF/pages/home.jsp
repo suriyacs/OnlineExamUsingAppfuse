@@ -52,4 +52,7 @@
             </div>
 </div>
 <% } %>
+<% if (!(request.isUserInRole(Constants.ADMIN_ROLE))) {%>
+    <a href="gotouserpage">click for exams</a>
+<% } %>
 </body>
