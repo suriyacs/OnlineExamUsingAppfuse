@@ -63,7 +63,7 @@ public class Exam {
     List<Question> questions = new ArrayList<Question>();
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "answerId")
+    @OneToMany(cascade = CascadeType.PERSIST)
     List<Answer> answers = new ArrayList<Answer>();
 
     public Exam() {

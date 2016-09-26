@@ -53,7 +53,7 @@
                 class="glyphicon glyphicon-log-out"></span></a>
         </div>
         <div class="logout" style="float: left">
-            <a href="adminpage" class="btn btn-success" title="logout">Main Page</a>
+            <a href="/home" class="btn btn-success" title="logout">Main Page</a>
         </div>
         </div>
         <center>

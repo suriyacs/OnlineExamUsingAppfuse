@@ -14,15 +14,9 @@
  <div class="header">
     <h1 class="title">Tech Assess</h1>
  </div>
-<ul class="glassList">
-    <li>
-        <a href="<c:url value='/userform'/>"><fmt:message key="menu.user"/></a>
-    </li>
-    <li>
-        <a href="<c:url value='/fileupload'/>"><fmt:message key="menu.selectFile"/></a>
-    </li>
-</ul>
- <li> <a href="${cookie['username'].value}"/><fmt:message key="menu.selectFile"/></a> </li>
+<% if (!(request.isUserInRole(Constants.ADMIN_ROLE))) {%>
+    <c:redirect url="/gotouserpage"/>
+<% } %>
 <% if (request.isUserInRole(Constants.ADMIN_ROLE)) {%>
  <div class="container">
             <div class="row">
@@ -51,8 +45,5 @@
                 </a>
             </div>
 </div>
-<% } %>
-<% if (!(request.isUserInRole(Constants.ADMIN_ROLE))) {%>
-    <a href="gotouserpage">click for exams</a>
 <% } %>
 </body>

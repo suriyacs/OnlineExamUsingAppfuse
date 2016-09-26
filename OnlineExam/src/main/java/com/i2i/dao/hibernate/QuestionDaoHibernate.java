@@ -1,19 +1,3 @@
-/*package dao;
-
-import java.util.List;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.stereotype.Repository;
-
-import dbconnection.DataBaseConnection;
-import exception.DataException;
-import model.Question;
-import model.QuestionType;
-import util.FileUtil;*/
-
 package com.i2i.dao.hibernate;
 
 import com.i2i.dao.QuestionDao;

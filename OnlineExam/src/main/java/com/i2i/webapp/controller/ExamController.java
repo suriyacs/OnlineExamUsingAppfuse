@@ -18,13 +18,8 @@ import com.i2i.exception.DataException;
 import com.i2i.model.Answer;
 import com.i2i.model.User;
 import com.i2i.service.QuestionManager;
+import com.i2i.service.ResultManager;
 import com.i2i.service.UserManager;
-/*
-import exception.DataException;
-import model.User;
-import service.ExamService;
-import service.QuestionService;
-import service.ResultService;
 
 /**
  * <p>
@@ -41,6 +36,7 @@ public class ExamController {
     private ExamManager examManager = null;
     private QuestionManager questionManager = null;
     private UserManager userManager = null;
+    private ResultManager resultManager = null;
     
     @Autowired
     public void setExamManager(final ExamManager examManager) {
@@ -55,6 +51,11 @@ public class ExamController {
     @Autowired
     public void setUserManager(final UserManager userManager) {
         this.userManager = userManager;
+    }
+    
+    @Autowired
+    public void setResultManager(final ResultManager resultManager) {
+        this.resultManager = resultManager;
     }
     /**
      * <p>
@@ -302,7 +303,7 @@ public class ExamController {
     /**
      * <p>
      * Method which calculates the result by calling the calculateResult method
-     * of resultService class.return the mark back to login page.
+     * of resultManager class.return the mark back to login page.
      * </p>
      * 
      * @param exam
@@ -319,16 +320,17 @@ public class ExamController {
      * @return string
      *     Contains name of the java server page to be loaded.
      */
-    /*@RequestMapping(value = "/resultcalculation", method = RequestMethod.POST)
+    @RequestMapping(value = "/resultcalculation", method = RequestMethod.POST)
     public String calculateResult(@ModelAttribute("exam") Exam exam, BindingResult result, ModelMap model,
-            @RequestParam("examId") int examId, HttpSession session) {
-        ResultService resultService = new ResultService();
+            @RequestParam("examId") int examId, final HttpServletRequest request) {
+             User user = null;
         try {
-            model.addAttribute("mark",resultService.calculateResult(exam, examId, (User) session.getAttribute("user")));
+            user = userManager.getUserByUsername(request.getRemoteUser());
+            model.addAttribute("mark",resultManager.calculateResult(exam, examId, user));
         } catch (DataException e) {
             model.addAttribute("mark", e.getMessage().toString());
         }
-        return "login";
-    }*/
+        return "userpage";
+    }
 
 }

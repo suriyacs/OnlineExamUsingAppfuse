@@ -37,6 +37,20 @@
                      });
             </script>
         </c:if>
+        <c:if test="${ null != mark }">
+            <script type="text/javascript">
+                swal({ 
+                  title: "Your Mark",
+                   text: "<c:out value="${mark}"/>",
+                    type: "success" 
+                    }, function(isConfirm) {
+                    	alert('ok');
+                    });
+                    $('.swal2-confirm').click(function() {
+                    	window.location.href = 'gotouserpage';
+                    });
+            </script>
+</c:if>
         <div id="grid"></div>
         <div class="content">
             <div class="page-header">

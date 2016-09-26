@@ -76,7 +76,6 @@ public class QuestionController {
             @RequestParam("questionType") String questionType) {
         try {
             int questionId = questionManager.addQuestion(question.getQuestionName());
-            System.out.println("in Controller questionType:"+questionType);
             questionManager.allocateQuestionType(Integer.parseInt(questionType), questionId);
             for (Choice choice : question.getChoices()) {
                 choiceManager.allocateQuestion(choiceManager.addChoice(choice.getChoiceName(), (choice.getIsCorrect())),

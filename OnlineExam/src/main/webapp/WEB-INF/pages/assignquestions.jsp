@@ -59,7 +59,7 @@
                 </div>
                 <div class="wrapper">
                 <div class="mainpage">
-                    <a href="adminpage" class="btn btn-success" title="mainpage">Main Page</a>
+                    <a href="/home" class="btn btn-success" title="mainpage">Main Page</a>
                 </div>
                 <div class="logout">
                     <a href="logout" class="btn btn-danger" title="logout"><span

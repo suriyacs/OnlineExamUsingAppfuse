@@ -13,5 +13,6 @@
         <mapping class="com.i2i.model.Question"/>
         <mapping class="com.i2i.model.QuestionType"/>
         <mapping class="com.i2i.model.Answer"/>
+        <mapping class="com.i2i.model.Result"/>
     </session-factory>
 </hibernate-configuration>

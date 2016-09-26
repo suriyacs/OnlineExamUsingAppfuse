@@ -56,7 +56,7 @@
                     <h1 class="title">TechAssess</h1>
                 </div>
                 <div class="mainpage">
-                    <a href="adminpage" class="btn btn-success" title="mainpage">Main Page</span></a>
+                    <a href="/home" class="btn btn-success" title="mainpage">Main Page</span></a>
                 </div>
                 <div class="logout">
                     <a href="logout" class="btn btn-danger" title="logout"><span
