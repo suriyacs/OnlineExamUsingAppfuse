@@ -14,6 +14,7 @@ import com.i2i.model.Question;
 import com.i2i.service.choiceManager;*/
 import com.i2i.service.QuestionManager;
 import com.i2i.model.Question;
+import com.i2i.exception.DataException;
 import com.i2i.model.Choice;
 import com.i2i.service.ChoiceManager;
 
@@ -82,12 +83,11 @@ public class QuestionController {
                         questionId);
             }
             model.addAttribute("SuccessMessage", "Added Successfully..!!");
-        } catch (Exception e) {
-            System.out.println(e.getMessage().toString());
+        } catch (DataException e) {
             model.addAttribute("insertQuestionMessage", (e.toString()));
-        } /*catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             model.addAttribute("insertQuestionMessage", "Error occured during conversion of" + " " + questionType);
-        }*/
+        }
         return ("addquestion");
 
     }
@@ -144,13 +144,12 @@ public class QuestionController {
             questionManager.allocateQuestionType(1, questionId);
             choiceManager.allocateQuestion(choiceId, questionId);
             model.addAttribute("SuccessMessage", correctAnswer + " " + "InserTion Success");
-        } catch (Exception e) {
-            System.out.println(e.getMessage().toString());
+        } catch (DataException e) {
             model.addAttribute("insertQuestionMessage", (e.toString()));
-        } /*catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             model.addAttribute("insertQuestionMessage",
                     "Error occured during conversion of" + " " + correctAnswer + " " + "in insert fill up page");
-        } */ finally {
+        } finally {
             return ("redirect:insertquestion");
         }
     }

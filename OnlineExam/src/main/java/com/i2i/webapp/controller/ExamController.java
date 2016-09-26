@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.i2i.service.ExamManager;
 import com.i2i.model.Exam;
+import com.i2i.exception.DataException;
 import com.i2i.model.Answer;
 import com.i2i.model.User;
 import com.i2i.service.QuestionManager;
@@ -37,8 +38,6 @@ import service.ResultService;
 public class ExamController {
     private ExamManager examManager = null;
     private QuestionManager questionManager = null;
-    /*private ExamService examService = new ExamService();
-    private QuestionService questionService = new QuestionService();*/
     
     @Autowired
     public void setExamManager(final ExamManager examManager) {
@@ -81,17 +80,13 @@ public class ExamController {
     @SuppressWarnings("finally")
     @RequestMapping(value = "/addingexam", method = RequestMethod.POST)
     public String insertExam(@ModelAttribute Exam exam, ModelMap Message) {
-        examManager.addExamDetails(exam);
-        Message.addAttribute("SuccessMessage", "Added Successfully..!!");
-        return "addexam";
-        /*try {
+        try {
             examManager.addExamDetails(exam);
             Message.addAttribute("SuccessMessage", "Added Successfully..!!");
         } catch (DataException e) {
             Message.addAttribute("InsertExamMessage", (e.getMessage().toString()));
-        } finally {
-            return "addexam";
-        }*/
+        } 
+        return "addexam";
     }
 
     /**
@@ -137,7 +132,7 @@ public class ExamController {
             questionManager.checkIfQuestionExist(toQuestionId);
             examManager.allocateQuestionsToExam(examId, fromQuestionId, toQuestionId);
             model.addAttribute("allocateMessage", "AllocatedSuccessfully..!!");
-        } catch (Exception e) {
+        } catch (DataException e) {
             model.addAttribute("ErrorMessage", e.getMessage().toString());
         }
         return ("assignquestions");
@@ -162,7 +157,7 @@ public class ExamController {
         try {
             model.addAttribute("questionList", questionManager.getAllQuestions());
             model.addAttribute("examList", examManager.getAllExamDetails());
-        } catch (Exception e) {
+        } catch (DataException e) {
             model.addAttribute("ErrorMessage", e.getMessage().toString());
         }
         return ("assignquestions");
@@ -182,16 +177,13 @@ public class ExamController {
      *     Contains name of the java server page to be loaded.
      */
     @RequestMapping(value = "/gotouserpage")
-    public String goToUserPage(ModelMap model) {
-        model.addAttribute("exams", examManager.getAllExamDetails());
-        return "userpage";
-        /*
+    public String goToUserPage(ModelMap model) {        
         try {
             model.addAttribute("exams", examManager.getAllExamDetails());
         } catch (DataException e) {
             model.addAttribute("ExamMessage", e.toString());
         }
-        return "userpage";*/
+        return "userpage";
     }
 
     /**

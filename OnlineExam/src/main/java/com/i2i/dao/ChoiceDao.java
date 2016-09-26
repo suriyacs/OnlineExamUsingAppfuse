@@ -1,7 +1,6 @@
 package com.i2i.dao;
 
-import java.util.List;
-
+import com.i2i.exception.DataException;
 import com.i2i.model.Choice;
 
 /**
@@ -32,7 +31,7 @@ public interface ChoiceDao extends GenericDao<Choice, Integer> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public int insertChoice(Choice choice);
+    public int insertChoice(Choice choice)throws DataException;
 
     /**
      * <p>
@@ -48,7 +47,7 @@ public interface ChoiceDao extends GenericDao<Choice, Integer> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public Choice retrieveChoiceDetailById(int choiceId); 
+    public Choice retrieveChoiceDetailById(int choiceId)throws DataException; 
 
     /**
      * <p>
@@ -65,5 +64,5 @@ public interface ChoiceDao extends GenericDao<Choice, Integer> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public void assignQuestion(int choiceId, int questionId); 
+    public void assignQuestion(int choiceId, int questionId)throws DataException; 
 }

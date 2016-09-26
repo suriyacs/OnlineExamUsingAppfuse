@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 import com.i2i.dao.ExamDao;
 import com.i2i.model.Exam;
 import com.i2i.service.ExamManager;
-/*import exception.DataException;
-import model.Exam;
-import model.User;*/
-
+import com.i2i.exception.DataException;
 /**
  * <p>
  * Service which accepts request from controller to perform operations like
@@ -49,13 +46,12 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public int addExamDetails(Exam exam) {//throws DataException {
-        return (examDao.insertExamDetails(exam));
-        /*try {
+    public int addExamDetails(Exam exam) throws DataException {
+        try {
             return (examDao.insertExamDetails(exam));
         } catch (DataException e) {
             throw new DataException(e.getMessage().toString());
-        }*/
+        }
     }
 
     /**
@@ -75,14 +71,14 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public void allocateQuestionsToExam(int examId, int fromQuestionId, int toQuestionId) {//throws DataException {
+    public void allocateQuestionsToExam(int examId, int fromQuestionId, int toQuestionId) throws DataException {
         Exam exam = getExamById(examId);
-        /*if (null != exam.getNoOfAllocatedQuestions()) {
+        if (null != exam.getNoOfAllocatedQuestions()) {
             if (Integer.parseInt(exam.getNoOfAllocatedQuestions()) == exam.getNoOfTotalQuestions()) {
                 throw new DataException(
                         "This Exam already allocated with enough questions..!Try again with different Id..!!");
             }
-        }*/
+        }
         for (int questionId = fromQuestionId; questionId <= toQuestionId; questionId++) {
             examDao.assignQuestionsToExam(examId, questionId);
         }
@@ -99,13 +95,12 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      *      Throws an exception to controller which gets generated at the
      *      time of database connection.
      */
-    public List<Exam> getAllExamDetails() {//throws DataException {
+    public List<Exam> getAllExamDetails() throws DataException {
         List<Exam> allExams = examDao.retrieveAllExamDetails();
-        return (allExams);
-        /*if (null == allExams) {
+        if (null == allExams) {
             throw new DataException("There is no Exams in Database.Please insert some Exams first..!!");
         }
-        return (allExams);*/
+        return (allExams);
     }
 
     /**
@@ -121,10 +116,10 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public void checkIfExamExist(int examId) {//throws DataException {
-        /*if (null == getExamById(examId)) {
+    public void checkIfExamExist(int examId) throws DataException {
+        if (null == getExamById(examId)) {
             throw new DataException("Exam with this Id Does not Exist..!!Try Again..!!");
-        }*/
+        }
     }
 
     /**
@@ -154,7 +149,7 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public Exam getExamById(int examId) {//throws DataException {
+    public Exam getExamById(int examId) throws DataException {
         return examDao.retrieveExamById(examId);
     }
 

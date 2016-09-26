@@ -3,6 +3,7 @@ package com.i2i.dao;
 import java.util.List;
 
 import com.i2i.model.QuestionType;
+import com.i2i.exception.DataException;
 import com.i2i.model.Question;
 
 /**
@@ -31,7 +32,7 @@ public interface QuestionTypeDao extends GenericDao<QuestionType, Integer> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public QuestionType retrieveTypeDetailById(int typeId);
+    public QuestionType retrieveTypeDetailById(int typeId)throws DataException;
 
     /**
      * <p>
@@ -47,5 +48,5 @@ public interface QuestionTypeDao extends GenericDao<QuestionType, Integer> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public void allocateQuestionToQuestionType(QuestionType questionType, Question question);
+    public void allocateQuestionToQuestionType(QuestionType questionType, Question question)throws DataException;
 }

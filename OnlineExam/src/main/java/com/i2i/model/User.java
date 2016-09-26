@@ -60,8 +60,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String confirmPassword;
     private String passwordHint;
     private String firstName;                   // required
-    private String lastName; 
-    private String fatherName;                   // required
+    private String lastName;                  // required
     private String email;                       // required; unique
     private String phoneNumber;
     private String website;
@@ -133,12 +132,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Field
     public String getLastName() {
         return lastName;
-    }
-    
-    @Column(name = "father_name", nullable = false, length = 50)
-    @Field
-    public String getFatherName() {
-        return fatherName;
     }
 
     @Column(nullable = false, unique = true)
@@ -310,11 +303,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.lastName = lastName;
     }
     
-    public void setFatherName(String fatherName) {
-        this.fatherName = fatherName;
-    }
-
-
     public void setEmail(String email) {
         this.email = email;
     }

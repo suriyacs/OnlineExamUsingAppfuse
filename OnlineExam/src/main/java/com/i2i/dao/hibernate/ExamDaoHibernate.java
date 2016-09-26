@@ -10,8 +10,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.i2i.dao.ExamDao;
+import com.i2i.exception.DataException;
 import com.i2i.model.Exam;
 import com.i2i.model.Question;
+import com.i2i.util.FileUtil;
 /*import dbconnection.DataBaseConnection;
 import exception.DataException;
 import model.Exam;
@@ -53,22 +55,17 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public int insertExamDetails(Exam exam) {//throws DataException {
-        //Session session = factory.openSession();
+    public int insertExamDetails(Exam exam) throws DataException {
         int id = 0;
-        id = (int)getSession().save(exam);
-        return id;
-       /* try {
-            Transaction transaction = session.beginTransaction();
-            id = (int) session.save(exam);
-            transaction.commit();
+        
+       
+        try {
+            id = (int)getSession().save(exam);
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in insertExamDetails method in ExamDao" + e);
             throw new DataException("Error occured while adding exam details");
-        } finally {
-            session.close();
-            return id;
-        }*/
+        }
+        return id;
     }
 
     /**
@@ -83,17 +80,13 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public List<Exam> retrieveAllExamDetails() {// throws DataException {
-         return getSession().createQuery("from Exam").list();
-        /*Session session = factory.openSession();
+    public List<Exam> retrieveAllExamDetails() throws DataException {         
         try {
-            return session.createQuery("from Exam").list();
+            return getSession().createQuery("from Exam").list();
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in retrieveAllExamDetails method in ExamDao" + e);
             throw new DataException("Error occured while retrieving all exam details. Kindly try again");
-        } finally {
-            session.close();
-        }*/
+        } 
     }
 
     /**
@@ -112,7 +105,7 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-     public void assignQuestionsToExam(int examId, int questionId) {// throws DataException {
+     public void assignQuestionsToExam(int examId, int questionId) throws DataException {
          try {
             Question question = (Question) getSession().get(Question.class, questionId);
             Exam exam = (Exam) getSession().get(Exam.class, examId);
@@ -126,8 +119,8 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
                 getSession().save(question);
             }
         } catch (HibernateException e) {
-            //FileUtil.logError("Exception occured in assignQuestionsToExam method in ExamDao" + e);
-            //throw new DataException("Cannot able to assign questionId" + " " + questionId + " " + "to examId" + " " + examId);
+            FileUtil.logError("Exception occured in assignQuestionsToExam method in ExamDao" + e);
+            throw new DataException("Cannot able to assign questionId" + " " + questionId + " " + "to examId" + " " + examId);
         } 
     }
 
@@ -209,18 +202,12 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Exception is raised during database connection.
      */
 
-    public Exam retrieveExamById(int examId) { //throws DataException {
-        return (Exam) getSession().get(Exam.class, examId);
-    }
-    /*
-        Session session = factory.openSession();
+    public Exam retrieveExamById(int examId) throws DataException {
         try {
-            return (Exam) session.get(Exam.class, examId);
+            return (Exam) getSession().get(Exam.class, examId);
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in retrieveExamById method in ExamDao" + e);
             throw new DataException("Error occured while retreieving exam details for given examId" + " " + examId);
-        } finally {
-            session.close();
-        }
-    }*/
+        } 
+    }
 }

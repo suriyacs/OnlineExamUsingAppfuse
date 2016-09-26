@@ -1,8 +1,7 @@
 package com.i2i.service.impl;
 
-import java.util.List;
-
 import com.i2i.dao.QuestionTypeDao;
+import com.i2i.exception.DataException;
 import com.i2i.model.QuestionType;
 import com.i2i.model.Question;
 import com.i2i.service.QuestionTypeManager;
@@ -44,7 +43,7 @@ public class QuestionTypeManagerImpl extends GenericManagerImpl<QuestionType, In
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public QuestionType getTypeDetailById(int typeId) { //throws DataException {
+    public QuestionType getTypeDetailById(int typeId) throws DataException {
         return questionTypeDao.retrieveTypeDetailById(typeId);
     }
 
@@ -64,7 +63,7 @@ public class QuestionTypeManagerImpl extends GenericManagerImpl<QuestionType, In
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public void addQuestion(QuestionType questionType, Question question) { //throws DataException {
+    public void addQuestion(QuestionType questionType, Question question) throws DataException {
         questionTypeDao.allocateQuestionToQuestionType(questionType, question);
     }
 }

@@ -2,6 +2,7 @@ package com.i2i.dao;
 
 import java.util.List;
 
+import com.i2i.exception.DataException;
 import com.i2i.model.Exam;
 
 /**
@@ -31,7 +32,7 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-     int insertExamDetails(Exam exam);
+     int insertExamDetails(Exam exam)throws DataException;
 
     /**
      * <p>
@@ -45,7 +46,7 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-     List<Exam> retrieveAllExamDetails();// throws DataException {
+     List<Exam> retrieveAllExamDetails() throws DataException;
     /**
      * <p>
      *     Allocate Questions to Exam by Retrieving objects of Question and Exam
@@ -62,7 +63,7 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public void assignQuestionsToExam(int examId, int questionId);
+    public void assignQuestionsToExam(int examId, int questionId)throws DataException;
        
     /**
      * <p>
@@ -134,6 +135,6 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      *     Exception is raised during database connection.
      */
 
-     Exam retrieveExamById(int examId); //throws DataException
+     Exam retrieveExamById(int examId) throws DataException;
       
 }

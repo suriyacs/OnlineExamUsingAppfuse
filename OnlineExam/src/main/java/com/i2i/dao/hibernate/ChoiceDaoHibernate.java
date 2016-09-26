@@ -15,8 +15,11 @@ import util.FileUtil;*/
 package com.i2i.dao.hibernate;
 
 import com.i2i.dao.ChoiceDao;
+import com.i2i.exception.DataException;
 import com.i2i.model.Choice;
 import com.i2i.model.Question;
+import com.i2i.util.FileUtil;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -61,17 +64,15 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public int insertChoice(Choice choice) { //throws DataException {
+    public int insertChoice(Choice choice) throws DataException {
         int choiceId = 0;
-        choiceId = (int) getSession().save(choice);
-        /*try {
-            choiceId = (int) session.save(choice);
+        
+        try {
+            choiceId = (int) getSession().save(choice);
         } catch (HibernateException e) {
-            //FileUtil.logError("Exception occured in insertChoice method in ChoiceDao" + e);
-            //throw new DataException(e.getMessage());
-        } finally {
-            session.close();
-        }*/
+            FileUtil.logError("Exception occured in insertChoice method in ChoiceDao" + e);
+            throw new DataException(e.getMessage());
+        } 
          return choiceId;
     }
 
@@ -89,19 +90,15 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public Choice retrieveChoiceDetailById(int choiceId) { //throws DataException {
-        Choice choice = null;
-        choice = (Choice) getSession().get(Choice.class, choiceId);
-        return choice;
-        /*try {
-            choice = (Choice) session.get(Choice.class, choiceId);
+    public Choice retrieveChoiceDetailById(int choiceId) throws DataException {
+        Choice choice = null;     
+        
+        try {
+            choice = (Choice) getSession().get(Choice.class, choiceId);
         } catch (HibernateException e) {
-            //FileUtil.logError("Exception occured in retrieveChoiceDetailById method in ChoiceDao" + e);
-            //throw new DataException("Cannot able to retrieve details for choiceId" + " " + choiceId);
-        } finally {
-            session.close();
-             return choice;
-        }*/
+            FileUtil.logError("Exception occured in retrieveChoiceDetailById method in ChoiceDao" + e);
+            throw new DataException("Cannot able to retrieve details for choiceId" + " " + choiceId);
+        } return choice;
     }
 
     /**
@@ -119,20 +116,15 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public void assignQuestion(int choiceId, int questionId) { //throws DataException {
-        Choice choice = (Choice) getSession().get(Choice.class, choiceId);
-        Question question = (Question) getSession().get(Question.class, questionId);
-        choice.setQuestionId(question);
-        /*try {
+    public void assignQuestion(int choiceId, int questionId) throws DataException {      
+        try {
             Choice choice = (Choice) getSession().get(Choice.class, choiceId);
             Question question = (Question) getSession().get(Question.class, questionId);
             choice.setQuestionId(question);
         } catch (HibernateException e) {
-            //FileUtil.logError("Exception occured in assignQuestion method in ChoiceDao" + e);
-            //throw new DataException("Error occured whilie allocating questionId" + " " + questionId + " "
-              //      + "to choiceId" + " " + choiceId);
-        } finally {
-            session.close();
-        }*/
+            FileUtil.logError("Exception occured in assignQuestion method in ChoiceDao" + e);
+            throw new DataException("Error occured whilie allocating questionId" + " " + questionId + " "
+                   + "to choiceId" + " " + choiceId);
+        } 
     }
 }

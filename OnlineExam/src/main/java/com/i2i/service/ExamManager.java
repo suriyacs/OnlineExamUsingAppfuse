@@ -2,6 +2,7 @@ package com.i2i.service;
 
 import java.util.List;
 
+import com.i2i.exception.DataException;
 import com.i2i.model.Exam;
 /*import exception.DataException;
 import model.Exam;
@@ -37,7 +38,7 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-     int addExamDetails(Exam exam); //throws DataException {
+     int addExamDetails(Exam exam) throws DataException;
      
     /**
      * 
@@ -80,8 +81,8 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *      Throws an exception to controller which gets generated at the
      *      time of database connection.
      */
-     List<Exam> getAllExamDetails(); //throws DataException {
-     public void allocateQuestionsToExam(int examId, int fromQuestionId, int toQuestionId);
+     List<Exam> getAllExamDetails() throws DataException;
+     public void allocateQuestionsToExam(int examId, int fromQuestionId, int toQuestionId)throws DataException;
     /**
      * <p>
      * Method which send request to DataAccessObject to check if the given exam
@@ -95,7 +96,7 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-     void checkIfExamExist(int examId);
+     void checkIfExamExist(int examId)throws DataException;
         
     /**
      * Method which send request to Exam DataAccessObject for allocating user to
@@ -124,6 +125,5 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-     Exam getExamById(int examId); //throws DataException {
-     //boolean checkIfUserAlreadyAttendedThisTest(String testId, User user);
+     Exam getExamById(int examId) throws DataException;
 }

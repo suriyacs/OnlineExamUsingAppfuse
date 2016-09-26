@@ -2,6 +2,7 @@ package com.i2i.service;
 
 import java.util.List;
 
+import com.i2i.exception.DataException;
 import com.i2i.model.Choice;
 /**
  * <p>
@@ -30,10 +31,7 @@ public interface ChoiceManager extends GenericManager<Choice, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    int addChoice(String answer, int correctAnswer); /* throws DataException {
-        return choiceDao.insertChoice(new Choice(answer, correctAnswer));
-    }*/
-
+    int addChoice(String answer, int correctAnswer) throws DataException;
     /**
      * <p>
      * Method which gets details of particular choice by passing id of that
@@ -48,9 +46,7 @@ public interface ChoiceManager extends GenericManager<Choice, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    Choice getChoiceDetailsById(int choiceId);  /*throws DataException {
-        return choiceDao.retrieveChoiceDetailById(choiceId);
-    }*/
+    Choice getChoiceDetailsById(int choiceId)throws DataException;
 
     /**
      * <p>
@@ -66,7 +62,5 @@ public interface ChoiceManager extends GenericManager<Choice, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    void allocateQuestion(int choiceId, int questionId); /* throws DataException {
-        choiceDao.assignQuestion(choiceId, questionId);
-    }*/
+    void allocateQuestion(int choiceId, int questionId) throws DataException;
 }

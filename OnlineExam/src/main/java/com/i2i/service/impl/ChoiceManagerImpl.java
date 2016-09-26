@@ -3,6 +3,7 @@ package com.i2i.service.impl;
 import java.util.List;
 
 import com.i2i.dao.ChoiceDao;
+import com.i2i.exception.DataException;
 import com.i2i.model.Choice;
 import com.i2i.service.ChoiceManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class ChoiceManagerImpl extends GenericManagerImpl<Choice, Integer> imple
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public int addChoice(String answer, int correctAnswer) { //throws DataException {
+    public int addChoice(String answer, int correctAnswer) throws DataException {
         return choiceDao.insertChoice(new Choice(answer, correctAnswer));
     }
 
@@ -61,7 +62,7 @@ public class ChoiceManagerImpl extends GenericManagerImpl<Choice, Integer> imple
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public Choice getChoiceDetailsById(int choiceId) { //throws DataException {
+    public Choice getChoiceDetailsById(int choiceId) throws DataException {
         return choiceDao.retrieveChoiceDetailById(choiceId);
     }
 
@@ -79,7 +80,7 @@ public class ChoiceManagerImpl extends GenericManagerImpl<Choice, Integer> imple
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public void allocateQuestion(int choiceId, int questionId) { //throws DataException {
+    public void allocateQuestion(int choiceId, int questionId) throws DataException {
         choiceDao.assignQuestion(choiceId, questionId);
     }
 }

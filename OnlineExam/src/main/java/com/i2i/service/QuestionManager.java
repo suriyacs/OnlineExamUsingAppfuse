@@ -2,6 +2,7 @@ package com.i2i.service;
 
 import java.util.List;
 
+import com.i2i.exception.DataException;
 import com.i2i.model.Question;
 
 /**
@@ -31,10 +32,7 @@ public interface QuestionManager extends GenericManager<Question, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    int addQuestion(String questionName); //throws DataException {
-        //return questionDao.insertQuestion(new Question(questionName));
-    //}
-
+    int addQuestion(String questionName)throws DataException;
     /**
      * <p>
      *     Method which pass id of the question and question type to assign question
@@ -52,9 +50,8 @@ public interface QuestionManager extends GenericManager<Question, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    void allocateQuestionType(int typeId, int questionId); //throws DataException {
-        //questionDao.assignQuestionType(typeId, questionId);
-    //}
+    void allocateQuestionType(int typeId, int questionId) throws DataException;
+        
 
     /**
      * <p>
@@ -71,9 +68,7 @@ public interface QuestionManager extends GenericManager<Question, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    Question getQuestionDetailById(int questionId); //throws DataException {
-        //return questionDao.retrieveQuestionDetailById(questionId);
-    //}
+    Question getQuestionDetailById(int questionId)throws DataException;
 
     /**
      * <p>
@@ -86,12 +81,7 @@ public interface QuestionManager extends GenericManager<Question, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    List<Question> getAllQuestions(); /*throws DataException {
-        if (null == questionDao.retrieveAllQuestions()) {
-            throw new DataException("There are no questions in database.Please insert some questions first.!!");
-        }
-        return (questionDao.retrieveAllQuestions());
-    }
+    List<Question> getAllQuestions()throws DataException;
 
     /**
      * <p>
@@ -106,9 +96,5 @@ public interface QuestionManager extends GenericManager<Question, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    void checkIfQuestionExist(int questionId); /*throws DataException {
-        if (null == getQuestionDetailById(questionId)) {
-            throw new DataException("Question with this id does not exist.!!Try Again..!!");
-        }
-    }*/
+    void checkIfQuestionExist(int questionId) throws DataException;
 }

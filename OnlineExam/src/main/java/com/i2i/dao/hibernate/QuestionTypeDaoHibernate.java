@@ -18,7 +18,9 @@ import util.FileUtil;*/
 package com.i2i.dao.hibernate;
 
 import com.i2i.dao.QuestionTypeDao;
+import com.i2i.exception.DataException;
 import com.i2i.model.QuestionType;
+import com.i2i.util.FileUtil;
 import com.i2i.model.Question;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -63,17 +65,15 @@ public class QuestionTypeDaoHibernate extends GenericDaoHibernate<QuestionType, 
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public QuestionType retrieveTypeDetailById(int typeId) { //throws DataException {
+    public QuestionType retrieveTypeDetailById(int typeId) throws DataException {
         Session session = getSessionFactory().getCurrentSession();
         QuestionType questionType = null;
         try {
             questionType = (QuestionType) session.get(QuestionType.class, typeId);
         } catch (HibernateException e) {
-            //FileUtil.logError("Exception occured in retrieveTypeDetailById method in QuestionTypeDao" + e);
-            //throw new DataException("Cannot able retrieve details for given typeId" + " " + typeId);
-        } finally {
-            session.close();
-        }
+            FileUtil.logError("Exception occured in retrieveTypeDetailById method in QuestionTypeDao" + e);
+            throw new DataException("Cannot able retrieve details for given typeId" + " " + typeId);
+        } 
         return questionType;
     }
 
@@ -91,7 +91,7 @@ public class QuestionTypeDaoHibernate extends GenericDaoHibernate<QuestionType, 
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public void allocateQuestionToQuestionType(QuestionType questionType, Question question) { //throws DataException {
+    public void allocateQuestionToQuestionType(QuestionType questionType, Question question) throws DataException {
         Session session = getSessionFactory().getCurrentSession();
         try {
             Set<Question> questionSet = new HashSet<Question>();
@@ -100,11 +100,9 @@ public class QuestionTypeDaoHibernate extends GenericDaoHibernate<QuestionType, 
             session.save(questionType);
             session.save(question);
         } catch (HibernateException e) {
-           // FileUtil.logError("Exception occured in allocateQuestionToQuestionType method in QuestionTypeDao" + e);
-            //throw new DataException("Cannot able to allocate questionId" + " " + question.getQuestionId()
-              //      + "to questionType" + " " + questionType.getTypeId());
-        } finally {
-            session.close();
-        }
+            FileUtil.logError("Exception occured in allocateQuestionToQuestionType method in QuestionTypeDao" + e);
+            throw new DataException("Cannot able to allocate questionId" + " " + question.getQuestionId()
+                  + "to questionType" + " " + questionType.getTypeId());
+        } 
     }
 }
