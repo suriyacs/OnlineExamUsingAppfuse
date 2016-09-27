@@ -2,8 +2,9 @@ package com.i2i.service;
 
 import com.i2i.exception.DataException;
 import com.i2i.model.Exam;
-import com.i2i.model.User;
 import com.i2i.model.Result;
+import com.i2i.model.User;
+
 /**
  * <p>
  * Class which calculate the result of exam written by the user and pass the

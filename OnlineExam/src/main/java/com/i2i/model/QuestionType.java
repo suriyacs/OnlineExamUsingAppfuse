@@ -1,7 +1,7 @@
 package com.i2i.model;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -13,10 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import com.i2i.model.Question;
 
@@ -32,7 +28,7 @@ import com.i2i.model.Question;
  */
 @Entity
 @Table(name = "QuestionType")
-public class QuestionType extends BaseObject implements Serializable {
+public class QuestionType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -70,40 +66,5 @@ public class QuestionType extends BaseObject implements Serializable {
 
     public Set<Question> getQuestion() {
         return this.questions;
-    }
-    
-    /**
-     * Overridden equals method for object comparison. Compares based on hashCode.
-     *
-     * @param o Object to compare
-     * @return true/false based on hashCode
-     */
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof QuestionType)) {
-            return false;
-        }
-
-        final QuestionType questionTypeObject = (QuestionType) o;
-
-        return this.hashCode() == questionTypeObject.hashCode();
-    }
-    
-    /**
-     * Overridden hashCode method - compares on address, city, province, country and postal code.
-     *
-     * @return hashCode
-     */
-    public int hashCode() {
-        return 1;
-    }
-    
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("typeId", this.typeId)
-                .append("typeName", this.typeName).toString();
     }
 }

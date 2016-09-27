@@ -1,17 +1,3 @@
-/*package dao;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.stereotype.Repository;
-
-import dbconnection.DataBaseConnection;
-import exception.DataException;
-import model.Choice;
-import model.Question;
-import util.FileUtil;*/
-
 package com.i2i.dao.hibernate;
 
 import com.i2i.dao.ChoiceDao;
@@ -21,11 +7,7 @@ import com.i2i.model.Question;
 import com.i2i.util.FileUtil;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * <p>
@@ -66,7 +48,6 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      */
     public int insertChoice(Choice choice) throws DataException {
         int choiceId = 0;
-        
         try {
             choiceId = (int) getSession().save(choice);
         } catch (HibernateException e) {
@@ -92,7 +73,6 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      */
     public Choice retrieveChoiceDetailById(int choiceId) throws DataException {
         Choice choice = null;     
-        
         try {
             choice = (Choice) getSession().get(Choice.class, choiceId);
         } catch (HibernateException e) {

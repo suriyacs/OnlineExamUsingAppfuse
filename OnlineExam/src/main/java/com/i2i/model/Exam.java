@@ -1,9 +1,7 @@
 package com.i2i.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,7 +18,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import com.i2i.model.User;
 import com.i2i.model.Answer;
 import com.i2i.model.Question;
 
@@ -135,12 +132,4 @@ public class Exam {
     public void addAnswer(Answer answer) {
         this.answers.add(answer);
     }
-
-    /*public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users.addAll(users);
-    }*/
 }

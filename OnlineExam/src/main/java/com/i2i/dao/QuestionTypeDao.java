@@ -1,17 +1,13 @@
 package com.i2i.dao;
 
-import java.util.List;
-
-import com.i2i.model.QuestionType;
 import com.i2i.exception.DataException;
 import com.i2i.model.Question;
+import com.i2i.model.QuestionType;
 
 /**
  * <p>
- *     This class provide interface between database and Service class. insert
- *     QuestionType Details from Service class into database and also perform
- *     retrieve QuestionType information from database and allocate Question
- *     operations.
+ *     QuestionTypeDao interface contains method declarations which are probably used by the QuestionType
+ *     entity for efficient retrieval, storing objects, assign question to prefered questionType.
  * </p>
  *
  * @author TechAssess
@@ -32,7 +28,7 @@ public interface QuestionTypeDao extends GenericDao<QuestionType, Integer> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public QuestionType retrieveTypeDetailById(int typeId)throws DataException;
+    public QuestionType retrieveTypeDetailById(int typeId) throws DataException;
 
     /**
      * <p>
@@ -48,5 +44,5 @@ public interface QuestionTypeDao extends GenericDao<QuestionType, Integer> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public void allocateQuestionToQuestionType(QuestionType questionType, Question question)throws DataException;
+    public void allocateQuestionToQuestionType(QuestionType questionType, Question question) throws DataException;
 }

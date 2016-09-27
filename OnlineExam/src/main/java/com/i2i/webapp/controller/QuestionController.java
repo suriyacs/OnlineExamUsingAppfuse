@@ -8,15 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/*import exception.DataException;
-import com.i2i.model.Choice;
-import com.i2i.model.Question;
-import com.i2i.service.choiceManager;*/
-import com.i2i.service.QuestionManager;
-import com.i2i.model.Question;
 import com.i2i.exception.DataException;
 import com.i2i.model.Choice;
+import com.i2i.model.Question;
 import com.i2i.service.ChoiceManager;
+import com.i2i.service.QuestionManager;
 
 /**
  * <p>
@@ -85,7 +81,7 @@ public class QuestionController {
         } catch (DataException e) {
             model.addAttribute("insertQuestionMessage", (e.toString()));
         } catch (NumberFormatException e) {
-            model.addAttribute("insertQuestionMessage", "Error occured during conversion of" + " " + questionType);
+            model.addAttribute("insertQuestionMessage", "Error occured during conversion of questionType" + " " + questionType);
         }
         return ("addquestion");
 
@@ -147,7 +143,7 @@ public class QuestionController {
             model.addAttribute("insertQuestionMessage", (e.toString()));
         } catch (NumberFormatException e) {
             model.addAttribute("insertQuestionMessage",
-                    "Error occured during conversion of" + " " + correctAnswer + " " + "in insert fill up page");
+                    "Error occured during conversion of correctAnswer" + " " + correctAnswer + " " + "in insert fill up page");
         } finally {
             return ("redirect:insertquestion");
         }

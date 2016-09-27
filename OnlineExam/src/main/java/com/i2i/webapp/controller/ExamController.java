@@ -3,6 +3,7 @@ package com.i2i.webapp.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -10,13 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.i2i.service.ExamManager;
-import com.i2i.model.Exam;
 import com.i2i.exception.DataException;
+import com.i2i.model.Exam;
 import com.i2i.model.Answer;
 import com.i2i.model.User;
+import com.i2i.service.ExamManager;
 import com.i2i.service.QuestionManager;
 import com.i2i.service.ResultManager;
 import com.i2i.service.UserManager;
@@ -57,6 +57,7 @@ public class ExamController {
     public void setResultManager(final ResultManager resultManager) {
         this.resultManager = resultManager;
     }
+    
     /**
      * <p>
      * Method which redirect to loginpage.
@@ -86,7 +87,6 @@ public class ExamController {
      *     Contains name of the java server page in which the message
      *     get's displayed and prompts the user to add another exam.
      */
-    @SuppressWarnings("finally")
     @RequestMapping(value = "/addingexam", method = RequestMethod.POST)
     public String insertExam(@ModelAttribute Exam exam, ModelMap Message) {
         try {
@@ -186,8 +186,11 @@ public class ExamController {
      *     Contains name of the java server page to be loaded.
      */
     @RequestMapping(value = "/gotouserpage")
-    public String goToUserPage(ModelMap model) {        
+    public String goToUserPage(ModelMap model, final HttpServletRequest request) {
+        User user = null;        
         try {
+            user = userManager.getUserByUsername(request.getRemoteUser());
+            model.addAttribute("userName", user.getUsername());
             model.addAttribute("exams", examManager.getAllExamDetails());
         } catch (DataException e) {
             model.addAttribute("ExamMessage", e.toString());
@@ -227,19 +230,6 @@ public class ExamController {
         return "addexam";
     }
 
-    /**
-     * <p>
-     * Method which redirect the user or admin to the login page by invalidating
-     * the session created for that particular user when the sign out button is
-     * clicked.
-     * </p>
-     * 
-     * @param session
-     *     Comprises the object of that particular user who have logged in.
-     * @return string
-     *     Contains name of the java server page which need to be loaded.
-     */
- 
     /**
      * <p>
      * Method which redirect the incoming request to add question page once the
@@ -295,7 +285,7 @@ public class ExamController {
             model.addAttribute("questionMessage", (e.getMessage().toString()));
         } catch (NumberFormatException e) {
             model.addAttribute("questionMessage",
-                    "Error occured during conversion of" + " " + testId + " " + "while allocting the exam");
+                    "Error occured during conversion of testId" + " " + testId + " " + "while allocting the exam");
         }
         return "questionpageforuser";
     }
@@ -323,7 +313,7 @@ public class ExamController {
     @RequestMapping(value = "/resultcalculation", method = RequestMethod.POST)
     public String calculateResult(@ModelAttribute("exam") Exam exam, BindingResult result, ModelMap model,
             @RequestParam("examId") int examId, final HttpServletRequest request) {
-             User user = null;
+        User user = null;
         try {
             user = userManager.getUserByUsername(request.getRemoteUser());
             model.addAttribute("mark",resultManager.calculateResult(exam, examId, user));
@@ -332,5 +322,4 @@ public class ExamController {
         }
         return "userpage";
     }
-
 }

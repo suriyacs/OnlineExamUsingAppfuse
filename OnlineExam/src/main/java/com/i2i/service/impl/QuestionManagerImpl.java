@@ -2,15 +2,13 @@ package com.i2i.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.i2i.dao.QuestionDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Question;
 import com.i2i.service.QuestionManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-/*import exception.DataException;
-import model.Question;*/
 
 /**
  * <p>
@@ -103,10 +101,11 @@ public class QuestionManagerImpl extends GenericManagerImpl<Question, Integer> i
      *     time of database connection.
      */
     public List<Question> getAllQuestions() throws DataException {
-        if (null == questionDao.retrieveAllQuestions()) {
+        List<Question> questions = questionDao.retrieveAllQuestions();
+        if (null == questions) {
             throw new DataException("There are no questions in database.Please insert some questions first.!!");
         }
-        return (questionDao.retrieveAllQuestions());
+        return (questions);
     }
 
     /**

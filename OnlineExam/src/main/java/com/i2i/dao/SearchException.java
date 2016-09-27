@@ -6,7 +6,12 @@ package com.i2i.dao;
  */
 public class SearchException extends RuntimeException {
 
-    public SearchException(Throwable ex) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public SearchException(Throwable ex) {
         super(ex);
     }
 

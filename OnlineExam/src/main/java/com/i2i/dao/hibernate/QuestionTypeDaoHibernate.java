@@ -1,36 +1,17 @@
-/*package dao;
+package com.i2i.dao.hibernate;
+
+import org.hibernate.HibernateException;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.stereotype.Repository;
-
-import dbconnection.DataBaseConnection;
-import exception.DataException;
-import model.Question;
-import model.QuestionType;
-import util.FileUtil;*/
-
-package com.i2i.dao.hibernate;
 
 import com.i2i.dao.QuestionTypeDao;
 import com.i2i.exception.DataException;
+import com.i2i.model.Question;
 import com.i2i.model.QuestionType;
 import com.i2i.util.FileUtil;
-import com.i2i.model.Question;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import java.util.List;
 /**
  * <p>
  *     This class provide interface between database and Service class. insert
@@ -45,7 +26,7 @@ import java.util.List;
 public class QuestionTypeDaoHibernate extends GenericDaoHibernate<QuestionType, Integer> implements QuestionTypeDao {
     
     /**
-     * Constructor to create a Generics-based version using Role as the entity
+     * Constructor to create a Generics-based version using QuestionType as the entity
      */
     public QuestionTypeDaoHibernate() {
         super(QuestionType.class);
@@ -66,10 +47,9 @@ public class QuestionTypeDaoHibernate extends GenericDaoHibernate<QuestionType, 
      *     Exception is raised during database connection.
      */
     public QuestionType retrieveTypeDetailById(int typeId) throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
         QuestionType questionType = null;
         try {
-            questionType = (QuestionType) session.get(QuestionType.class, typeId);
+            questionType = (QuestionType) getSession().get(QuestionType.class, typeId);
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in retrieveTypeDetailById method in QuestionTypeDao" + e);
             throw new DataException("Cannot able retrieve details for given typeId" + " " + typeId);
@@ -92,13 +72,12 @@ public class QuestionTypeDaoHibernate extends GenericDaoHibernate<QuestionType, 
      *     Exception is raised during database connection.
      */
     public void allocateQuestionToQuestionType(QuestionType questionType, Question question) throws DataException {
-        Session session = getSessionFactory().getCurrentSession();
         try {
             Set<Question> questionSet = new HashSet<Question>();
             questionSet.add(question);
             questionType.setQuestion(questionSet);
-            session.save(questionType);
-            session.save(question);
+            getSession().save(questionType);
+            getSession().save(question);
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in allocateQuestionToQuestionType method in QuestionTypeDao" + e);
             throw new DataException("Cannot able to allocate questionId" + " " + question.getQuestionId()

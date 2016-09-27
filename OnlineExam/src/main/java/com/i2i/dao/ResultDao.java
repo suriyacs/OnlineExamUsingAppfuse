@@ -1,14 +1,12 @@
 package com.i2i.dao;
 
-import java.util.List;
 import com.i2i.exception.DataException;
-
 import com.i2i.model.Result;
 
 /**
  * <p>
- *     This class provide interface between database and Service class. used to
- *     store the result after user completed the exam.
+ *     ResultDao interface contains method declaration which is probably
+ *     used by the Result entity for storing instance of an result.
  * </p>
  * 
  * @author TechAssess

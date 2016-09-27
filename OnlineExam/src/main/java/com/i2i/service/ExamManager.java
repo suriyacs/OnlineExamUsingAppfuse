@@ -5,9 +5,6 @@ import java.util.List;
 import com.i2i.exception.DataException;
 import com.i2i.model.Exam;
 import com.i2i.model.User;
-/*import exception.DataException;
-import model.Exam;
-
 
 /**
  * <p>
@@ -22,7 +19,6 @@ import model.Exam;
  *
  */
 public interface ExamManager extends GenericManager<Exam, Long> {
-    //ExamDao examDao = new ExamDao();
 
     /**
      * <p>
@@ -39,7 +35,7 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-     int addExamDetails(Exam exam) throws DataException;
+    int addExamDetails(Exam exam) throws DataException;
      
     /**
      * 
@@ -58,18 +54,7 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    /*public void allocateQuestionsToExam(int examId, int fromQuestionId, int toQuestionId) throws DataException {
-        Exam exam = getExamById(examId);
-        if (null != exam.getNoOfAllocatedQuestions()) {
-            if (Integer.parseInt(exam.getNoOfAllocatedQuestions()) == exam.getNoOfTotalQuestions()) {
-                throw new DataException(
-                        "This Exam already allocated with enough questions..!Try again with different Id..!!");
-            }
-        }
-        for (int questionId = fromQuestionId; questionId <= toQuestionId; questionId++) {
-            examDao.assignQuestionsToExam(examId, questionId);
-        }
-    }*/
+    void allocateQuestionsToExam(int examId, int fromQuestionId, int toQuestionId) throws DataException;
 
     /**
      * <p>
@@ -82,8 +67,8 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *      Throws an exception to controller which gets generated at the
      *      time of database connection.
      */
-     List<Exam> getAllExamDetails() throws DataException;
-     public void allocateQuestionsToExam(int examId, int fromQuestionId, int toQuestionId)throws DataException;
+    List<Exam> getAllExamDetails() throws DataException;
+     
     /**
      * <p>
      * Method which send request to DataAccessObject to check if the given exam
@@ -97,7 +82,7 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-     void checkIfExamExist(int examId)throws DataException;
+    void checkIfExamExist(int examId)throws DataException;
         
     /**
      * Method which send request to Exam DataAccessObject for allocating user to
@@ -111,7 +96,7 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public void addUserToExam(String examId, Long userId) throws DataException;
+    void addUserToExam(String examId, Long userId) throws DataException;
 
     /**
      * Method which accept the request and retrieve the exam details of given
@@ -124,6 +109,7 @@ public interface ExamManager extends GenericManager<Exam, Long> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-     Exam getExamById(int examId) throws DataException;
-     public boolean checkIfUserAlreadyAttendedThisTest(String testId, User user);
+    Exam getExamById(int examId) throws DataException;
+    
+    boolean checkIfUserAlreadyAttendedThisTest(String testId, User user);
 }

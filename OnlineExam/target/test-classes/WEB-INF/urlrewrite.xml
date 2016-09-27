@@ -59,16 +59,8 @@
         <to>/webjars/$1</to>
     </rule>
     <rule>
-        <from>/bootstrap/**</from>
-        <to>/bootstrap/$1</to>
-    </rule>
-    <rule>
         <from>/css/**</from>
         <to>/css/$1</to>
-    </rule>
-    <rule>
-        <from>/scss/**</from>
-        <to>/scss/$1</to>
     </rule>
     <rule>
         <from>/js/**</from>
@@ -77,6 +69,14 @@
     <rule>
         <from>/img/**</from>
         <to>/img/$1</to>
+    </rule>
+    <rule>
+        <from>/scss/**</from>
+        <to>/scss/$1</to>
+    </rule>
+    <rule>
+        <from>/bootstrap/**</from>
+        <to>/bootstrap/$1</to>
     </rule>
     <rule>
         <from>/crossdomain.xml</from>

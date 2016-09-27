@@ -39,7 +39,8 @@ class HibernateSearchTools {
      * @return
      * @throws ParseException
      */
-    public static Query generateQuery(String searchTerm, Class searchedEntity, Session sess, Analyzer defaultAnalyzer) throws ParseException {
+    @SuppressWarnings("rawtypes")
+	public static Query generateQuery(String searchTerm, Class searchedEntity, Session sess, Analyzer defaultAnalyzer) throws ParseException {
         Query qry = null;
 
         if (searchTerm.equals("*")) {
@@ -97,7 +98,8 @@ class HibernateSearchTools {
      * @param clazz the class
      * @param sess the hibernate session
      */
-    public static void reindex(Class clazz, Session sess) {
+    @SuppressWarnings("rawtypes")
+	public static void reindex(Class clazz, Session sess) {
         FullTextSession txtSession = Search.getFullTextSession(sess);
         MassIndexer massIndexer = txtSession.createIndexer(clazz);
         try {

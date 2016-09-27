@@ -1,17 +1,15 @@
 package com.i2i.dao.hibernate;
 
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.springframework.stereotype.Repository;
+
 import com.i2i.dao.QuestionDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Question;
 import com.i2i.model.QuestionType;
 import com.i2i.util.FileUtil;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
 /**
  * <p>
  *     This class provide interface between database and Service class. insert
@@ -26,7 +24,7 @@ import java.util.List;
 public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer> implements QuestionDao {
     
     /**
-     * Constructor to create a Generics-based version using Role as the entity
+     * Constructor to create a Generics-based version using Question as the entity
      */
     public QuestionDaoHibernate() {
         super(Question.class);
@@ -75,7 +73,6 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
      *     Exception is raised during database connection.
      */
     public void assignQuestionType(int typeId, int questionId) throws DataException {
-        
         try {
            Question question = (Question) getSession().get(Question.class, questionId);
            QuestionType questionType = (QuestionType) getSession().get(QuestionType.class, typeId);

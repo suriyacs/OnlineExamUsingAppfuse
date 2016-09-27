@@ -68,7 +68,7 @@ public interface QuestionManager extends GenericManager<Question, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    Question getQuestionDetailById(int questionId)throws DataException;
+    Question getQuestionDetailById(int questionId) throws DataException;
 
     /**
      * <p>
@@ -81,7 +81,7 @@ public interface QuestionManager extends GenericManager<Question, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    List<Question> getAllQuestions()throws DataException;
+    List<Question> getAllQuestions() throws DataException;
 
     /**
      * <p>

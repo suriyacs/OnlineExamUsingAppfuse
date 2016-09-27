@@ -5,14 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
+import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,15 +17,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
 import com.i2i.model.Choice;
 import com.i2i.model.QuestionType;
 import com.i2i.model.Exam;
-
-//import com.i2i.model.Exam;
 
 /**
  * <p>
@@ -41,7 +36,7 @@ import com.i2i.model.Exam;
  */
 @Entity
 @Table(name = "Question")
-public class Question extends BaseObject implements Serializable {
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -116,41 +111,5 @@ public class Question extends BaseObject implements Serializable {
 
     public void add(Choice choice) {
         this.choices.add(choice);
-    }
-
-    /**
-     * Overridden equals method for object comparison. Compares based on hashCode.
-     *
-     * @param o Object to compare
-     * @return true/false based on hashCode
-     */
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Question)) {
-            return false;
-        }
-
-        final Question questionObject = (Question) o;
-
-        return this.hashCode() == questionObject.hashCode();
-    }
-    
-    /**
-     * Overridden hashCode method - compares on address, city, province, country and postal code.
-     *
-     * @return hashCode
-     */
-    public int hashCode() {
-        return 1;
-    }
-    
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("questionId", this.questionId)
-                .append("questionName", this.questionName)
-                .append("typeId", this.typeId).toString();
     }
 }

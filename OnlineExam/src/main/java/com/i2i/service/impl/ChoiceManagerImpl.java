@@ -1,13 +1,12 @@
 package com.i2i.service.impl;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.i2i.dao.ChoiceDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Choice;
 import com.i2i.service.ChoiceManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * <p>

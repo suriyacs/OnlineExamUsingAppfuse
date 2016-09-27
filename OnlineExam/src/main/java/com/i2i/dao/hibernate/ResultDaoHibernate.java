@@ -1,14 +1,12 @@
 package com.i2i.dao.hibernate;
 
+import org.hibernate.HibernateException;
+import org.springframework.stereotype.Repository;
+
 import com.i2i.dao.ResultDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Result;
 import com.i2i.util.FileUtil;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -23,7 +21,7 @@ import org.springframework.stereotype.Repository;
 public class ResultDaoHibernate extends GenericDaoHibernate<Result, Integer> implements ResultDao {
 
      /**
-     * Constructor to create a Generics-based version using Role as the entity
+     * Constructor to create a Generics-based version using Result as the entity
      */
     public ResultDaoHibernate() {
         super(Result.class);
@@ -44,7 +42,7 @@ public class ResultDaoHibernate extends GenericDaoHibernate<Result, Integer> imp
             getSession().save(result);
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in storeResult method in ResultDao" + e);
-            throw new DataException("Cannot able to store result.");
+            throw new DataException("Cannot able to store calculated result.");
         }
     }
 }

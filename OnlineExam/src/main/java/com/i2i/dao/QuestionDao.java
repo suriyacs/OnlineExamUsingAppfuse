@@ -7,9 +7,8 @@ import com.i2i.model.Question;
 
 /**
  * <p>
- *     This class provide interface between database and Service class. insert
- *     Questions Details from Service class into database and also perform retrieve
- *     Question information from database and assign questiontype operations.
+ *     QuestionDao interface contains method declarations which are probably used by the Question entity
+ *     for efficient retrieval, storing objects, assign question type to prefered question.
  * </p>
  * 
  * @author TechAssess
@@ -80,7 +79,5 @@ public interface QuestionDao extends GenericDao<Question, Integer> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    @SuppressWarnings("unchecked")
     public List<Question> retrieveAllQuestions() throws DataException;
-
 }

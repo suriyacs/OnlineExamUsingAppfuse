@@ -8,5 +8,11 @@
     <session-factory>
         <mapping class="com.i2i.model.User"/>
         <mapping class="com.i2i.model.Role"/>
+        <mapping class="com.i2i.model.Exam"/>
+        <mapping class="com.i2i.model.Choice"/>
+        <mapping class="com.i2i.model.Question"/>
+        <mapping class="com.i2i.model.QuestionType"/>
+        <mapping class="com.i2i.model.Answer"/>
+        <mapping class="com.i2i.model.Result"/>
     </session-factory>
 </hibernate-configuration>

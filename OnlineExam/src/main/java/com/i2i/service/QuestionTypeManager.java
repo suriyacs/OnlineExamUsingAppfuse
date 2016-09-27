@@ -1,10 +1,8 @@
 package com.i2i.service;
 
-import java.util.List;
-
-import com.i2i.model.QuestionType;
 import com.i2i.exception.DataException;
 import com.i2i.model.Question;
+import com.i2i.model.QuestionType;
 
 /**
  * <P>
@@ -32,7 +30,7 @@ public interface QuestionTypeManager extends GenericManager<QuestionType, Intege
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    QuestionType getTypeDetailById(int typeId)throws DataException;
+    QuestionType getTypeDetailById(int typeId) throws DataException;
 
     /**
      * <p>
@@ -50,5 +48,5 @@ public interface QuestionTypeManager extends GenericManager<QuestionType, Intege
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    void addQuestion(QuestionType questionType, Question question)throws DataException;
+    void addQuestion(QuestionType questionType, Question question) throws DataException;
 }

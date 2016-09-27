@@ -1,12 +1,13 @@
 package com.i2i.service.impl;
 
-import com.i2i.dao.QuestionTypeDao;
-import com.i2i.exception.DataException;
-import com.i2i.model.QuestionType;
-import com.i2i.model.Question;
-import com.i2i.service.QuestionTypeManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.i2i.dao.QuestionTypeDao;
+import com.i2i.exception.DataException;
+import com.i2i.model.Question;
+import com.i2i.model.QuestionType;
+import com.i2i.service.QuestionTypeManager;
 
 /**
  * <P>
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 @Service("questionTypeManager")
 public class QuestionTypeManagerImpl extends GenericManagerImpl<QuestionType, Integer>
     implements QuestionTypeManager {
+
     QuestionTypeDao questionTypeDao;
 
     @Autowired

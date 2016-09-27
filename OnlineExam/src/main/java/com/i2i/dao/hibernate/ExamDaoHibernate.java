@@ -4,9 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.hibernate.Session;
 import org.hibernate.HibernateException;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.i2i.dao.ExamDao;
@@ -15,12 +13,6 @@ import com.i2i.model.Exam;
 import com.i2i.model.Question;
 import com.i2i.model.User;
 import com.i2i.util.FileUtil;
-/*import dbconnection.DataBaseConnection;
-import exception.DataException;
-import model.Exam;
-import model.Question;
-import model.User;
-import util.FileUtil;
 
 /**
  * <p>
@@ -34,9 +26,10 @@ import util.FileUtil;
  */
 @Repository
 public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements ExamDao {
-    /*private DataBaseConnection connection = DataBaseConnection.getConnection();
-    private SessionFactory factory = connection.createSessionFactory();*/
-    
+
+    /**
+     * Constructor to create a Generics-based version using Exam as the entity
+     */    
     public ExamDaoHibernate() {
         super(Exam.class);
     }
@@ -58,8 +51,6 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      */
     public int insertExamDetails(Exam exam) throws DataException {
         int id = 0;
-        
-       
         try {
             id = (int)getSession().save(exam);
         } catch (HibernateException e) {
@@ -81,7 +72,8 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public List<Exam> retrieveAllExamDetails() throws DataException {         
+    @SuppressWarnings("unchecked")
+	public List<Exam> retrieveAllExamDetails() throws DataException {         
         try {
             return getSession().createQuery("from Exam").list();
         } catch (HibernateException e) {
@@ -162,11 +154,11 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Exception is raised during database connection.
      */
     public boolean assignUserToExam(int examId, Long userId) throws DataException {
-        Exam exam = null;
+        //Exam exam = null;
         try {
             Set<User> userSet = new HashSet<User>();
             Set<Exam> examSet = new HashSet<Exam>();
-            exam = (Exam) getSession().get(Exam.class, examId);
+            Exam exam = (Exam) getSession().get(Exam.class, examId);
             User user = (User) getSession().get(User.class, userId);
             userSet.add(user);
             examSet.add(exam);

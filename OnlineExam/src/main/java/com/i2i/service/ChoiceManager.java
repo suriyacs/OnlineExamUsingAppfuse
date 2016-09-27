@@ -1,9 +1,8 @@
 package com.i2i.service;
 
-import java.util.List;
-
 import com.i2i.exception.DataException;
 import com.i2i.model.Choice;
+
 /**
  * <p>
  * ChoiceService gets request from controller and process the given data by
@@ -32,6 +31,7 @@ public interface ChoiceManager extends GenericManager<Choice, Integer> {
      *     time of database connection.
      */
     int addChoice(String answer, int correctAnswer) throws DataException;
+    
     /**
      * <p>
      * Method which gets details of particular choice by passing id of that
@@ -46,7 +46,7 @@ public interface ChoiceManager extends GenericManager<Choice, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    Choice getChoiceDetailsById(int choiceId)throws DataException;
+    Choice getChoiceDetailsById(int choiceId) throws DataException;
 
     /**
      * <p>

@@ -7,9 +7,9 @@ import com.i2i.model.Exam;
 
 /**
  * <p>
- *     This class provide interface between database and Service class. insert Exam
- *     Details from Service class into database and also perform retrieve Exam
- *     information from database and allocate Question operations.
+ *     ExamDao interface contains method declarations which are probably used by the Exam entity
+ *     for efficient retrieval, storing objects, assign user to prefered question and also to
+ *     increase a count in allocated question column in a table.
  * </p>
  * 
  * @author TechAssess
@@ -19,20 +19,19 @@ public interface ExamDao extends GenericDao<Exam, Long> {
 
     /**
      * <p>
-     *     Gets Exam model Object from Service class which contains details of Exam
-     *     and create the session then begin the transaction persist the exam object
-     *     and close the session returns id after insertion of exam into database.
+     *     Method which accept instance of exam to store it in a
+     *     database and also it returns an id of inserted exam.
      * </p>
      * 
      * @param exam
      *     Object contains details of Exam like exam name,Duration etc.
-     * @return id 
+     * @return int 
      *     Id of exam which is added to the database.
      * @throws DataException
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-     int insertExamDetails(Exam exam)throws DataException;
+    public int insertExamDetails(Exam exam) throws DataException;
 
     /**
      * <p>
@@ -46,7 +45,7 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-     List<Exam> retrieveAllExamDetails() throws DataException;
+    public List<Exam> retrieveAllExamDetails() throws DataException;
     /**
      * <p>
      *     Allocate Questions to Exam by Retrieving objects of Question and Exam
@@ -63,7 +62,7 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public void assignQuestionsToExam(int examId, int questionId)throws DataException;
+    public void assignQuestionsToExam(int examId, int questionId) throws DataException;
        
     /**
      * <p>
@@ -75,7 +74,7 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      * @param exam
      *     Objects contains details of exam.
      */
-     void increaseAllocatedQuestionsCount(Exam exam);
+    public void increaseAllocatedQuestionsCount(Exam exam);
 
     /**
      * <p>
@@ -93,7 +92,7 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-     public boolean assignUserToExam(int examId, Long userId) throws DataException;
+    public boolean assignUserToExam(int examId, Long userId) throws DataException;
 
     /**
      * <p>
@@ -109,7 +108,5 @@ public interface ExamDao extends GenericDao<Exam, Long> {
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-
-     Exam retrieveExamById(int examId) throws DataException;
-      
+    public Exam retrieveExamById(int examId) throws DataException;
 }

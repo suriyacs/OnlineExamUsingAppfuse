@@ -1,15 +1,17 @@
 package com.i2i.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.i2i.dao.ExamDao;
+import com.i2i.exception.DataException;
 import com.i2i.model.Exam;
 import com.i2i.model.User;
 import com.i2i.service.ExamManager;
-import com.i2i.exception.DataException;
+
 /**
  * <p>
  * Service which accepts request from controller to perform operations like
@@ -157,8 +159,9 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
     }
 
     public boolean checkIfUserAlreadyAttendedThisTest(String testId, User user) {
-        if (null != user.getExams()) {
-            for (Exam exam : user.getExams()) {
+        Set<Exam> exams = user.getExams();
+        if (null != exams) {
+            for (Exam exam : exams) {
                 if (exam.getExamId() == Integer.parseInt(testId)) {
                     return true;
                 }
