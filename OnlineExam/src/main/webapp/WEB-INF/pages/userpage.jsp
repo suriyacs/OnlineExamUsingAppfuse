@@ -1,5 +1,4 @@
 <%@ include file="/common/taglibs.jsp"%>
-
 <html>
     <head>
         <title>Exam Details</title>
@@ -50,7 +49,7 @@
                     	window.location.href = 'gotouserpage';
                     });
             </script>
-</c:if>
+        </c:if>
         <div id="grid"></div>
         <div class="content">
             <div class="page-header">
@@ -79,8 +78,7 @@
                         <c:forEach items="${exams}" var="exam">
                             <tr>
                                 <td>
-                                    <a id="load_home" href="#demo<c:out value="${Choice ? '' : count}"/>" 
-                                    class="btn btn-info btn-lg" data-toggle="collapse">
+                                    <a id="load_home" href="#demo<c:out value="${Choice ? '' : count}"/>" class="btn btn-info btn-lg" data-toggle="collapse">
                                     <c:out value="${exam.getExamName()}" />
                                     </a>
                                 </td>
@@ -92,8 +90,7 @@
                 <c:set var="count" value="1"/>
                 <div id="form">
                     <c:forEach items="${exams}" var="exam">
-                        <form id="demo<c:out value="${Choice ? '' : count}"/>"
-                        action="taketest" class="collapse" method="post">
+                        <form id="demo<c:out value="${Choice ? '' : count}"/>" action="taketest" class="collapse" method="post">
                         <b>Instructions:</b><br> 
                         <p class="text-left">1.Examinations will be conducted during
                             the allocated times shown in the examination timetable.<br>
@@ -116,14 +113,11 @@
                             bring into the examination hall only those calculators that have
                             been approved by the School.<br>
                         </p>
-                        <input
-                            type="checkbox" id="checkbox">Agreed and im ready to
-                        start the test<br> 
+                        <input type="checkbox" id="checkbox">Agreed and im ready tostart the test<br> 
                         <!--<c:set var="selectedexam" value="${exam.getExamId()}" scope="session" />
-                        <c:out value="${selectedexam}"/>!-->
+                            <c:out value="${selectedexam}"/>!-->
                         <label>
-                            <input type="hidden"
-                            name="test" value="<c:out value="${exam.getExamId()}"/>" />
+                            <input type="hidden" name="test" value="<c:out value="${exam.getExamId()}"/>"/>
                         </label>
                         <br>
                         <input id="button" type="submit" value="START" class="btn btn-primary"/>
@@ -135,4 +129,5 @@
         </div>
     </body>
 </html>
+
 

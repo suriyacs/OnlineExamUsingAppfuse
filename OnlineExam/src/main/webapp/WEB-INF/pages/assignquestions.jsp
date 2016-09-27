@@ -1,7 +1,11 @@
+
+
 <%@ include file="/common/taglibs.jsp"%>
 <html>
     <head>
-        <title>Assign Question to Exam</title>
+        <title>
+            <fmt:message key="assignquestion.title"/>
+        </title>
         <link rel="icon" href="img/c-finger-pointing.png">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" integrity="sha384-   
             BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
@@ -55,125 +59,156 @@
         <div class="content">
             <div class="container">
                 <div class="head">
-                    <h1 class="title">TechAssess</h1>
+                    <h1 class="title">
+                        <fmt:message key="heading.name"/>
+                    </h1>
                 </div>
                 <div class="wrapper">
-                <div class="mainpage">
-                    <a href="/home" class="btn btn-success" title="mainpage">Main Page</a>
+                    <div class="mainpage">
+                        <a href="/home" class="btn btn-success" title="mainpage">
+                            <fmt:message key="button.mainpage"/>
+                        </a>
+                    </div>
+                    <div class="logout">
+                        <a href="logout" class="btn btn-danger" title="logout"><span
+                            class="glyphicon glyphicon-log-out"></span></a>
+                    </div>
                 </div>
-                <div class="logout">
-                    <a href="logout" class="btn btn-danger" title="logout"><span
-                        class="glyphicon glyphicon-log-out"></span></a>
-                </div>
-               </div>
             </div>
             <br><br>
             <div class="center">
-               <div class="table">
-                <div class="questiontable">
-                    <table border="1" class="table table-striped">
-                      <thead>
-                        <tr style="text-align: center" class="qtable">
-                            <th>Question Id</th>
-                            <th>Question Name</th>
-                            <th>Question Type</th>
-                        </tr>
-                      </thead>
-                        <tbody>
-                            <c:if test="${questionList != null}">
-                                <c:forEach items="${questionList}" var="question">
-                                    <tr class="qtable">
-                                        <td class="filterable-cell">
-                                            <c:out value="${question.getQuestionId()}" />
-                                        </td>
-                                        <td class="filterable-cell">
-                                            <c:out value="${question.getQuestionName()}" />
-                                        </td>
-                                        <td class="filterable-cell">
-                                            <c:out value="${question.getTypeId().getTypeName()}" />
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </c:if>
-                        </tbody>
-                    </table>
+                <div class="table">
+                    <div class="questiontable">
+                        <table border="1" class="table table-striped">
+                            <thead>
+                                <tr style="text-align: center" class="qtable">
+                                    <th>
+                                        <fmt:message key="table.questionid"/>
+                                    </th>
+                                    <th>
+                                        <fmt:message key="table.questionname"/>
+                                    </th>
+                                    <th>
+                                        <fmt:message key="table.questiontypename"/>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:if test="${questionList != null}">
+                                    <c:forEach items="${questionList}" var="question">
+                                        <tr class="qtable">
+                                            <td class="filterable-cell">
+                                                <c:out value="${question.getQuestionId()}" />
+                                            </td>
+                                            <td class="filterable-cell">
+                                                <c:out value="${question.getQuestionName()}" />
+                                            </td>
+                                            <td class="filterable-cell">
+                                                <c:out value="${question.getTypeId().getTypeName()}" />
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="allexams" style="float: right">
+                        <table border="1"class="table table-striped">
+                            <thead>
+                                <tr style="text-align: center">
+                                    <th>
+                                        <fmt:message key="table.examid"/>
+                                    </th>
+                                    <th>
+                                        <fmt:message key="table.examname"/>
+                                    </th>
+                                    <th>
+                                        <fmt:message key="table.examduration"/>
+                                    </th>
+                                    <th>
+                                        <fmt:message key="table.totalquestions"/>
+                                    </th>
+                                    <th>
+                                        <fmt:message key="table.allocatedquestion"/>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:if test="${examList != null}">
+                                    <c:forEach items="${examList}" var="exam">
+                                        <tr>
+                                            <td class="filterable-cell">
+                                                <c:out value="${exam.getExamId()}" />
+                                            </td>
+                                            <td class="filterable-cell">
+                                                <c:out value="${exam.getExamName()}" />
+                                            </td>
+                                            <td class="filterable-cell">
+                                                <c:out value="${exam.getExamDuration()}" />
+                                            </td>
+                                            <td class="filterable-cell">
+                                                <c:out value="${exam.getNoOfTotalQuestions()}" />
+                                            </td>
+                                            <td class="filterable-cell">
+                                                <c:choose>
+                                                    <c:when test="${exam.getNoOfAllocatedQuestions() != null}">
+                                                        <c:out value="${exam.getNoOfAllocatedQuestions()}" />
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:out value="0" />
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="allexams" style="float: right">
-                    <table border="1"class="table table-striped">
-                      <thead>
-                        <tr style="text-align: center">
-                            <th>Exam Id</th>
-                            <th>Exam Name</th>
-                            <th>Duration</th>
-                            <th>Total Questions</th>
-                            <th>Allocated Questions</th>
-                        </tr>
-                       </thead>
-                        <tbody>
-                            <c:if test="${examList != null}">
-                                <c:forEach items="${examList}" var="exam">
-                                    <tr>
-                                        <td class="filterable-cell">
-                                            <c:out value="${exam.getExamId()}" />
-                                        </td>
-                                        <td class="filterable-cell">
-                                            <c:out value="${exam.getExamName()}" />
-                                        </td>
-                                        <td class="filterable-cell">
-                                            <c:out value="${exam.getExamDuration()}" />
-                                        </td>
-                                        <td class="filterable-cell">
-                                            <c:out value="${exam.getNoOfTotalQuestions()}" />
-                                        </td>
-                                        <td class="filterable-cell">
-                                            <c:choose>
-                                                <c:when test="${exam.getNoOfAllocatedQuestions() != null}">
-                                                    <c:out value="${exam.getNoOfAllocatedQuestions()}" />
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <c:out value="0" />
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </c:if>
-                        </tbody>
-                    </table>
-                </div>
-                </div> 
                 <br> <br> <br> <br> <br> <br> <br>
                 <br> <br> <br> <br>
                 <center>
-                <div class="form">
-                    <div class="tab-content" style="margin: 25px">
-                        <div id="signup">
-                            <h1 style="color: black">Allocate Question</h1>
-                            <form name="addQuestion" action="allocating" method="post" onsubmit="return validateAssignQuestionForm()">
-                                <div class="field-wrap">
-                                    <label> Enter Exam Id<span class="req">*</span>
-                                    </label> <input type="text" name="examId" autocomplete="off" />
-                                </div>
-                                <div class="field-wrap">
-                                    <label> Form QuestionId ToAllocate<span class="req">*</span>
-                                    </label> <input type="text" name="fromQuestionId"
-                                        autocomplete="off" />
-                                </div>
-                                <div class="field-wrap">
-                                    <label> To QuestionId ToAllocate<span class="req">*</span>
-                                    </label> <input type="text" name="toQuestionId"
-                                        autocomplete="off" />
-                                </div>
-                                <button type="submit" class="button button-block">
-                                Allocate
-                                </button>
-                            </form>
+                    <div class="form">
+                        <div class="tab-content" style="margin: 25px">
+                            <div id="signup">
+                                <h1 style="color: black">
+                                    <fmt:message key="assignquestion.heading"/>
+                                </h1>
+                                <form name="addQuestion" action="allocating" method="post" onsubmit="return validateAssignQuestionForm()">
+                                    <div class="field-wrap">
+                                        <label>
+                                            <fmt:message key="formlabel.examid"/>
+                                            <span class="req">*</span>
+                                        </label>
+                                        <input type="text" name="examId" autocomplete="off" />
+                                    </div>
+                                    <div class="field-wrap">
+                                        <label>
+                                            <fmt:message key="formlabel.formquestionid"/>
+                                            <span class="req">*</span>
+                                        </label>
+                                        <input type="text" name="fromQuestionId"
+                                            autocomplete="off" />
+                                    </div>
+                                    <div class="field-wrap">
+                                        <label>
+                                            <fmt:message key="formlabel.toquestionid"/>
+                                            <span class="req">*</span>
+                                        </label>
+                                        <input type="text" name="toQuestionId"
+                                            autocomplete="off" />
+                                    </div>
+                                    <button type="submit" class="button button-block">
+                                        <fmt:message key="button.allocate"/>
+                                    </button>
+                                </form>
+                            </div>
+                            <div id="login"></div>
                         </div>
-                        <div id="login"></div>
+                        <!-- tab-content -->
                     </div>
-                    <!-- tab-content -->
-                </div>
-                <!-- /form -->
+                    <!-- /form -->
                 </center>
                 <script src='js/form.js'></script>
                 <script src="js/index.js"></script>
@@ -181,4 +216,5 @@
         </div>
     </body>
 </html>
+
 
