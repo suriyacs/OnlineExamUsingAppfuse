@@ -50,14 +50,12 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Exception is raised during database connection.
      */
     public int insertExamDetails(Exam exam) throws DataException {
-        int id = 0;
         try {
-            id = (int)getSession().save(exam);
+            return (int)getSession().save(exam);
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in insertExamDetails method in ExamDao" + e);
             throw new DataException("Error occured while adding exam details");
         }
-        return id;
     }
 
     /**
@@ -73,7 +71,7 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Exception is raised during database connection.
      */
     @SuppressWarnings("unchecked")
-	public List<Exam> retrieveAllExamDetails() throws DataException {         
+    public List<Exam> retrieveAllExamDetails() throws DataException {         
         try {
             return getSession().createQuery("from Exam").list();
         } catch (HibernateException e) {
@@ -154,7 +152,6 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Exception is raised during database connection.
      */
     public boolean assignUserToExam(int examId, Long userId) throws DataException {
-        //Exam exam = null;
         try {
             Set<User> userSet = new HashSet<User>();
             Set<Exam> examSet = new HashSet<Exam>();

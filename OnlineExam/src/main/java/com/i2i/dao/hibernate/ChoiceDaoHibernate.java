@@ -46,15 +46,13 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public int insertChoice(Choice choice) throws DataException {
-        int choiceId = 0;
+    public int insertChoice(Choice choice) throws DataException {        
         try {
-            choiceId = (int) getSession().save(choice);
+            return (int) getSession().save(choice);
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in insertChoice method in ChoiceDao" + e);
             throw new DataException(e.getMessage());
         } 
-         return choiceId;
     }
 
     /**
@@ -71,14 +69,13 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-    public Choice retrieveChoiceDetailById(int choiceId) throws DataException {
-        Choice choice = null;     
+    public Choice retrieveChoiceDetailById(int choiceId) throws DataException {            
         try {
-            choice = (Choice) getSession().get(Choice.class, choiceId);
+            return (Choice) getSession().get(Choice.class, choiceId);
         } catch (HibernateException e) {
             FileUtil.logError("Exception occured in retrieveChoiceDetailById method in ChoiceDao" + e);
             throw new DataException("Cannot able to retrieve details for choiceId" + " " + choiceId);
-        } return choice;
+        }
     }
 
     /**

@@ -102,6 +102,7 @@ public class QuestionManagerImpl extends GenericManagerImpl<Question, Integer> i
      */
     public List<Question> getAllQuestions() throws DataException {
         List<Question> questions = questionDao.retrieveAllQuestions();
+        
         if (null == questions) {
             throw new DataException("There are no questions in database.Please insert some questions first.!!");
         }

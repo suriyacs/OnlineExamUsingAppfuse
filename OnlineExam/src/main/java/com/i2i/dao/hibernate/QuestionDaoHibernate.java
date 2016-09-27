@@ -47,14 +47,12 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
      *     Exception is raised during database connection.
      */
     public int insertQuestion(Question question) throws DataException {
-        int questionId = 0;
         try {
-            questionId = (int) getSession().save(question);
+            return (int) getSession().save(question);
         } catch (HibernateException e) {
             FileUtil.logError("Error occured in insertQuestion method in QuestionDao" + e);
             throw new DataException("Cannot able to add Question. Kindly try again");
         } 
-         return questionId;
     }
 
     /**
@@ -99,14 +97,12 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
      *     Exception is raised during database connection.
      */
     public Question retrieveQuestionDetailById(int questionId) throws DataException {
-        Question question = null;
         try {
-            question = (Question) getSession().get(Question.class, questionId);
+            return (Question) getSession().get(Question.class, questionId);
         } catch (HibernateException e) {
             FileUtil.logError("Error occured in retrieveQuestionDetailById method in QuestionDao" + e);
             throw new DataException("Error occured while retrieving details for given questionId" + " " + questionId);
         } 
-        return question;
     }
 
     /**
@@ -123,13 +119,11 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
      */
     @SuppressWarnings("unchecked")
     public List<Question> retrieveAllQuestions() throws DataException {
-        List<Question> questionList = null;
         try {
-            questionList = getSession().createQuery("from Question").list();
+            return getSession().createQuery("from Question").list();
         } catch (HibernateException e) {
             FileUtil.logError("Error occured in retrieveAllQuestions method in QuestionDao" + e);
             throw new DataException("Error occured while retrieving details for all questions");
         } 
-        return questionList;
     }
 }

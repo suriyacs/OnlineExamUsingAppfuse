@@ -187,7 +187,8 @@ public class ExamController {
      */
     @RequestMapping(value = "/gotouserpage")
     public String goToUserPage(ModelMap model, final HttpServletRequest request) {
-        User user = null;        
+        User user = null;      
+          
         try {
             user = userManager.getUserByUsername(request.getRemoteUser());
             model.addAttribute("userName", user.getUsername());
@@ -265,7 +266,8 @@ public class ExamController {
      */
     @RequestMapping(value = "/taketest")
     public String redirectToQuestionPage(final HttpServletRequest request,@RequestParam("test")String testId, ModelMap model) {
-        User user = null;        
+        User user = null;    
+            
         try {
         	user = userManager.getUserByUsername(request.getRemoteUser());
             if (examManager.checkIfUserAlreadyAttendedThisTest(testId, user)) {

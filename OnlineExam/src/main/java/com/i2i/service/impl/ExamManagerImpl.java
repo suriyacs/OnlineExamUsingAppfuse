@@ -76,6 +76,7 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      */
     public void allocateQuestionsToExam(int examId, int fromQuestionId, int toQuestionId) throws DataException {
         Exam exam = getExamById(examId);
+        
         if (null != exam.getNoOfAllocatedQuestions()) {
             if (Integer.parseInt(exam.getNoOfAllocatedQuestions()) == exam.getNoOfTotalQuestions()) {
                 throw new DataException(
@@ -100,6 +101,7 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      */
     public List<Exam> getAllExamDetails() throws DataException {
         List<Exam> allExams = examDao.retrieveAllExamDetails();
+        
         if (null == allExams) {
             throw new DataException("There is no Exams in Database.Please insert some Exams first..!!");
         }
@@ -139,7 +141,7 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
      */
     public void addUserToExam(String examId, Long userId) throws DataException {
         if (!(examDao.assignUserToExam(Integer.parseInt(examId), userId))) {
-        	throw new DataException("Sorry!!Can't Shedule This Exam to you.Try Again.!!");
+            throw new DataException("Sorry!!Can't Shedule This Exam to you.Try Again.!!");
         }
     }
 
@@ -160,6 +162,7 @@ public class ExamManagerImpl extends GenericManagerImpl<Exam, Long> implements E
 
     public boolean checkIfUserAlreadyAttendedThisTest(String testId, User user) {
         Set<Exam> exams = user.getExams();
+        
         if (null != exams) {
             for (Exam exam : exams) {
                 if (exam.getExamId() == Integer.parseInt(testId)) {

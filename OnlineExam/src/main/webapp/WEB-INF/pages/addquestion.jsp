@@ -60,7 +60,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="logout" style="float:left;margin:25px">
+                <div class="logout">
                     <a href="logout" class="btn btn-danger" title="logout"><span
                         class="glyphicon glyphicon-log-out"></span></a>
                 </div>

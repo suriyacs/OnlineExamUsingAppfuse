@@ -63,6 +63,7 @@ public class ResultManagerImpl extends GenericManagerImpl<Result, Integer> imple
      */
     public int calculateResult(Exam exam, int examId, User user) throws DataException {
         int mark = 0;
+        
         try {
             Exam originalExamObject = examManager.getExamById(examId);
             for (Answer answer : exam.getAnswers()) {
