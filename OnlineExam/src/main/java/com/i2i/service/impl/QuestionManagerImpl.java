@@ -122,9 +122,9 @@ public class QuestionManagerImpl extends GenericManagerImpl<Question, Integer> i
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    public void checkIfQuestionExist(int questionId) throws DataException {
-        if (null == getQuestionDetailById(questionId)) {
-            throw new DataException("Question with this id does not exist.!!Try Again..!!");
+    public void checkIfQuestionsExist(int fromQuestionId, int toQuestionId) throws DataException {
+        if ((null == getQuestionDetailById(fromQuestionId)) || (null == getQuestionDetailById(toQuestionId))) {
+            throw new DataException("Question with provided id does not exist.!!Try Again..!!");
         }
     }
 }

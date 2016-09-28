@@ -137,9 +137,8 @@ public class QuestionController {
             @RequestParam("answer") String answer, @RequestParam("checkbox") String correctAnswer, ModelMap model) {
         try {
             int questionId = questionManager.addQuestion(questionName);
-            int choiceId = choiceManager.addChoice(answer, Integer.parseInt(correctAnswer));
             questionManager.allocateQuestionType(1, questionId);
-            choiceManager.allocateQuestion(choiceId, questionId);
+            choiceManager.allocateQuestion(choiceManager.addChoice(answer, Integer.parseInt(correctAnswer)), questionId);
             model.addAttribute("SuccessMessage", correctAnswer + " " + "InserTion Success");
         } catch (DataException e) {
             model.addAttribute("insertQuestionMessage", (e.toString()));

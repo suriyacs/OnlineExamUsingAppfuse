@@ -139,8 +139,7 @@ public class ExamController {
             @RequestParam("fromQuestionId") int fromQuestionId, @RequestParam("toQuestionId") int toQuestionId) {
         try {
             examManager.checkIfExamExist(examId);
-            questionManager.checkIfQuestionExist(fromQuestionId);
-            questionManager.checkIfQuestionExist(toQuestionId);
+            questionManager.checkIfQuestionsExist(fromQuestionId, toQuestionId);
             examManager.allocateQuestionsToExam(examId, fromQuestionId, toQuestionId);
             model.addAttribute("allocateMessage", "AllocatedSuccessfully..!!");
         } catch (DataException e) {
@@ -191,11 +190,8 @@ public class ExamController {
      */
     @RequestMapping(value = "/gotouserpage")
     public String goToUserPage(ModelMap model, final HttpServletRequest request) {
-        User user = null;      
-          
         try {
-            user = userManager.getUserByUsername(request.getRemoteUser());
-            model.addAttribute("userName", user.getUsername());
+            model.addAttribute("userName", (userManager.getUserByUsername(request.getRemoteUser())).getUsername());
             model.addAttribute("exams", examManager.getAllExamDetails());
         } catch (DataException e) {
             model.addAttribute("ExamMessage", e.toString());
@@ -274,7 +270,7 @@ public class ExamController {
         User user = null;    
             
         try {
-        	user = userManager.getUserByUsername(request.getRemoteUser());
+            user = userManager.getUserByUsername(request.getRemoteUser());
             if (examManager.checkIfUserAlreadyAttendedThisTest(testId, user)) {
                 model.addAttribute("ExamMessage", "Sorry.!!you already attended this exam..!!");
                 return "userpage";
@@ -321,10 +317,8 @@ public class ExamController {
     @RequestMapping(value = "/resultcalculation", method = RequestMethod.POST)
     public String calculateResult(@ModelAttribute("exam") Exam exam, BindingResult result, ModelMap model,
             @RequestParam("examId") int examId, final HttpServletRequest request) {
-        User user = null;
         try {
-            user = userManager.getUserByUsername(request.getRemoteUser());
-            model.addAttribute("mark",resultManager.calculateResult(exam, examId, user));
+            model.addAttribute("mark",resultManager.calculateResult(exam, examId, userManager.getUserByUsername(request.getRemoteUser())));
         } catch (DataException e) {
             model.addAttribute("mark", e.getMessage().toString());
             FileUtil.logError(e.toString());

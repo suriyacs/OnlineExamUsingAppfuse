@@ -96,5 +96,5 @@ public interface QuestionManager extends GenericManager<Question, Integer> {
      *     Throws an exception to controller which gets generated at the
      *     time of database connection.
      */
-    void checkIfQuestionExist(int questionId) throws DataException;
+    void checkIfQuestionsExist(int fromQuestionId, int toQuestionId) throws DataException;
 }
