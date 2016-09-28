@@ -368,14 +368,14 @@ body{
 			
 			@-webkit-keyframes fade{
 				0%{
-					background:#3F3F3F;
+					background:white;
 				}
 				
 				50%{
-					background:#3F3F3F;
+					background:white;
 				}
 				
 				100%{
-					background: #3F3F3F ;
+					background: white ;
 				}
 			}

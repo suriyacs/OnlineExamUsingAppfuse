@@ -34,7 +34,7 @@ function validatefillupform() {
 }
 
 function checkChooseCheckBoxes() {
-	var checkboxes = document.getElementsByName('checkboxofchoose');
+	var checkboxes = document.querySelectorAll('input[name="checkboxofchoose"]:checked');
 	var vals = new Array();
 	for (var i=0, n=checkboxes.length;i<n;i++) 
 	{
@@ -43,7 +43,7 @@ function checkChooseCheckBoxes() {
 	        vals[i] = checkboxes[i].value;
 	    }
 	}
-	if(vals.length <= 0 || vals.length > 1) {
+	if(checkboxes.length <= 0 || checkboxes.length > 1) {
 		swal({ 
 			  title: "Error",
 			   text: "Please Choose One Correct Answer",
@@ -53,7 +53,7 @@ function checkChooseCheckBoxes() {
 	}
  }
 function checkMultipleCheckBoxes() {
-	var checkboxes = document.getElementsByName('multipleCheckBox');
+	var checkboxes = document.querySelectorAll('input[name="checkboxofchoose"]:checked');
 	var vals = new Array();
 	for (var i=0, n=checkboxes.length;i<n;i++) 
 	{
@@ -62,7 +62,7 @@ function checkMultipleCheckBoxes() {
 	        vals[i] = checkboxes[i].value;
 	    }
 	}
-	if(vals.length <= 0) {
+	if(checkboxes.length <= 0) {
 		swal({ 
 			  title: "Error",
 			   text: "Please Choose Atleast One Correct Answer",

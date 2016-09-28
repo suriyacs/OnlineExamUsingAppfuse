@@ -34,20 +34,7 @@
                  
             </script>
         </c:if>
-        <!-- <script type="text/javascript">
-            $(window).on('beforeunload', function() {
-            	  $(window).on('unload', function() {
-            		window.location.href="logout";
-            	  });
-            	  return "submitted";
-            	});
-            </script> -->
-        <div id="grid"></div>
-        <div class="content">
-            <div class="page-header">
-                <h1 class="title" align="center">TechAssess</h1>
-            </div>
-            <h5>Time Remaining:</h5>
+            <h3 class="examheader">Time Remaining:</h3>
             <div id="countdown"></div>
             <div id="notifier"></div>
             <script type="text/javascript">
@@ -93,18 +80,16 @@
                 });
             </script>
             <div class="usertab">
-                <img src="img/userimage.png" alt="userimage">
-                <h3>
-                    <c:out value="${userName}" />
-                </h3>
+                <div class="userdetail">
+                    <img src="img/userimage.png" alt="userimage">
+                    <h3 class="examheader"><c:out value="${userName}" /></h3>
+                </div>
+                <div class="logout" style="float: right">
+                    <a href="logout" class="btn btn-danger" title="logout"><span
+                        class="glyphicon glyphicon-log-out"></span></a>
+                </div>
+                <h1 class="examheader"><c:out value="${examName}" /></h1>
             </div>
-            <div class="logout" style="float: right">
-                <a href="logout" class="btn btn-danger" title="logout"><span
-                    class="glyphicon glyphicon-log-out"></span></a>
-            </div>
-            <h4 style="text-align:center">
-                <c:out value="${examName}" />
-            </h4>
             <div class="questiondiv">
                 <form:form action="resultcalculation" method="post"
                     modelAttribute="exam" name="myform">
@@ -162,7 +147,6 @@
                         class="btn btn-primary" />
                 </form:form>
             </div>
-        </div>
     </body>
 </html>
 

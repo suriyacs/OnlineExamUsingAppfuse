@@ -3,7 +3,6 @@
     <head>
         <title>Exam Details</title>
         <link rel="icon" href="img/c-finger-pointing.png">
-        <link href="css/userpagestyling.css" rel="stylesheet" type="text/css">
         <link href="css/login.css" rel="stylesheet" type="text/css">
         <link href="css/userpage.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"
@@ -50,35 +49,29 @@
                     });
             </script>
         </c:if>
-        <div id="grid"></div>
-        <div class="content">
-            <div class="page-header">
-                <center>
-                    <h1 class="title">TechAssess</h1>
-                </center>
-            </div>
-            <div class="usertab">
-                <img src="img/userimage.png" alt="userimage">
-                <h3 align="center">
-                    <c:out value="${userName}" />
-                </h3>
-            </div>
-            <div class="logout" style="float: right">
-                <a href="logout" class="btn btn-danger" title="logout"><span
-                    class="glyphicon glyphicon-log-out"></span></a>
-            </div>
             <div id="header">
-                <h2 align="center">Exam to be Attended</h2>
+                <div class="usertab">
+                    <img src="img/userimage.png" alt="userimage">
+                    <h3 class="headertag">
+                        <c:out value="${userName}" />
+                    </h3>
+                </div>
+                <div class="logout" style="float: right">
+                    <a href="logout" class="btn btn-danger" title="logout"><span
+                        class="glyphicon glyphicon-log-out"></span></a>
+                </div>
+                <h2 class="headertag">Exam to be Attended</h2>
             </div>
             <div class="content-container">
                 <div id="content"></div>
                 <c:set var="count" value="1"/>
-                <div class="well" style="width:25%">
+                <div class="well">
                     <table class="buttontable">
                         <c:forEach items="${exams}" var="exam">
                             <tr>
                                 <td>
-                                    <a id="load_home" href="#demo<c:out value="${Choice ? '' : count}"/>" class="btn btn-info btn-lg" data-toggle="collapse" style="width:130%">
+                                    <a id="load_home" href="#demo<c:out value="${Choice ? '' : count}"/>" class="btn btn-info btn-lg"
+                                         data-toggle="collapse" style="width:200%">
                                     <c:out value="${exam.getExamName()}" />
                                     </a>
                                 </td>
@@ -91,31 +84,39 @@
                 <div id="form">
                     <c:forEach items="${exams}" var="exam">
                         <form id="demo<c:out value="${Choice ? '' : count}"/>" action="taketest" class="collapse" method="post">
-                        <b>Instructions:</b><br> 
-                        <p class="text-left">1.Examinations will be conducted during
-                            the allocated times shown in the examination timetable.<br>
-                            2.Handphones brought into the examination hall
-                            must be switched off at ALL times.
-                            <br> 3.Photography is NOT allowed in the examination hall at
-                            ALL times. <br> 4.All materials and/or devices which are
-                            found in violation of any examination regulations will be
-                            confiscated.<br> 5.The examination hall will be open for
-                            admission 10 minutes before the time scheduled for the
-                            commencement of the examination.<br> 6. You will not be
-                            admitted for the examination after one hour of the commencement
-                            of the examination.<br> 7.Do NOT continue to write after the
-                            examination has ended. You are to remain seated quietly whileCreate
-                            your answer scripts are being collected and counted. <br>
-                            8.No reference materials, in whatever format, are allowed.<br>
-                            9.You are to stay in the examination hall until the Chief
-                            Invigilator has given the permission to leave. Do NOT talk until
-                            you are outside of the examination hall.<br> 10. You may
-                            bring into the examination hall only those calculators that have
-                            been approved by the School.<br>
-                        </p>
+                            <table class="table borderless">
+                                <thead>
+                                    <tr class='borderless'>
+                                        <th class="theader">Instructions:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1.Examinations will be conducted during
+                                        the allocated times shown in the examination timetable.</td></tr>
+                                    <tr class='borderless'><td>2.Handphones brought into the examination hall
+                                        must be switched off at ALL times.</td></tr>
+                                    <tr class='borderless'><td>3.Photography is NOT allowed in the examination hall at
+                                        ALL times.</td></tr>
+                                    <tr class='borderless'><td>4.All materials and/or devices which are
+                                        found in violation of any examination regulations will be
+                                        confiscated.</td></tr>
+                                    <tr class='borderless'><td>5.The examination hall will be open for
+                                        admission 10 minutes before the time scheduled for the
+                                        commencement of the examination.</td></tr>
+                                    <tr class='borderless'><td>6. You will not be admitted for the examination 
+                                        after one hour of the commencement of the examination.</td></tr>
+                                    <tr class='borderless'><td>7.Do NOT continue to write after the
+                                        examination has ended. You are to remain seated quietly whileCreate
+                                        your answer scripts are being collected and counted.</td></tr>
+                                    <tr class='borderless'><td>8.No reference materials, in whatever format, are allowed.</td></tr>
+                                    <tr class='borderless'><td>9.You are to stay in the examination hall until the Chief
+                                        Invigilator has given the permission to leave. Do NOT talk until
+                                        you are outside of the examination hall.</td></tr>
+                                    <tr class='borderless'><td>10. You may bring into the examination hall only 
+                                        those calculators that have been approved by the School.</td></tr>
+                                </tbody>
+                            </table>
                         <input type="checkbox" id="checkbox">Agreed and im ready tostart the test<br> 
-                        <!--<c:set var="selectedexam" value="${exam.getExamId()}" scope="session" />
-                            <c:out value="${selectedexam}"/>!-->
                         <label>
                             <input type="hidden" name="test" value="<c:out value="${exam.getExamId()}"/>"/>
                         </label>
@@ -126,7 +127,6 @@
                     </c:forEach>
                 </div>
             </div>
-        </div>
     </body>
 </html>
 
