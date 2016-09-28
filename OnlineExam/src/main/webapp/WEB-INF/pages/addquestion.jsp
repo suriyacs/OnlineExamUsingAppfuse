@@ -52,7 +52,6 @@
                   });
             </script>
         </c:if>
-        <div class="content">
             <div class="header">
                 <div class="mainpage">
                     <a href="/home" class="btn btn-success" title="mainpage">
@@ -61,9 +60,9 @@
                     </a>
                 </div>
                 <div class="logout">
-                    <a href="logout" class="btn btn-danger" title="logout"><span
-                        class="glyphicon glyphicon-log-out"></span></a>
-                </div>
+                        <a href="logout" class="btn btn-danger" title="logout"><span
+                            class="glyphicon glyphicon-log-out"></span></a>
+               </div>
             </div>
             <br>
             <br>
@@ -238,7 +237,6 @@
                     </table>
                 </div>
             </div>
-        </div>
     </body>
 </html>
 

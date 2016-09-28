@@ -25,13 +25,7 @@
     <script src="js/sweetalert2.js"></script>
     <script src="js/parallex.js"></script>
 </head>
-<body id="login">
-    <div id="grid"></div>
-    <div class="content">
-        <div>
-            <div>
-                <h1 class="title">Tech Assess</h1>
-            </div>
+<body>           
             <div id="jssor_1" class="jsso">
                 <div data-u="slides" class="slides">
                     <div data-p="225.00" style="display: none;">
@@ -58,13 +52,12 @@
                     style="top: 6px; right: 12px; width: 35px; height: 58px;"
                     data-autocenter="2"></span>
             </div>
-        </div>
         <div class="center">
             <div class="inputform" style="float: right">
                 <div class="form">
                     <form method="post" id="loginForm" action="<c:url value='/j_security_check'/>"
                         onsubmit="saveUsername(this);return validateForm(this)" class="form-signin" autocomplete="off">
-                        <h2 class="form-signin-heading">
+                        <h2 class="form-signin-heading" style="color:white">
                             <fmt:message key="login.heading"/>
                         </h2>
                         <c:if test="${param.error != null}">
@@ -296,20 +289,18 @@
             </div>
             <script src="js/index1.js"></script>
         </div>
-    </div>
     <!-- content -->
-    </div>
     <section class="footer">
         <div class="container">
             <br>
             <div class="address" style="float: left;margin:auto;">
-                <i class="fa fa-map-marker" style="font-size: 48px; color: black"></i><br>
+                <i class="fa fa-map-marker" style="font-size: 48px; color: white"></i><br>
                 <p>
                     <span>21 RR Towers5,TVK Industrial Estate</span> Gundy,Chennai
                 </p>
             </div>
             <div style="float: left; width: 30%">
-                <i class="fa fa-phone" style="font-size: 30px; color: black;"></i>
+                <i class="fa fa-phone" style="font-size: 30px; color: white;"></i>
                 <p>+917502169393</p>
                 <p>+918807277030</p>
             </div>
@@ -317,19 +308,19 @@
                 <div class="footer-icons">
                     <div style="float: left; width: 10%">
                         <a href="#"><i class="fa fa-facebook"
-                            style="font-size: 30px; color: black"></i></a>
+                            style="font-size: 30px; color:white"></i></a>
                     </div>
                     <div style="float: left; width: 10%">
                         <a href="#"><i class="fa fa-twitter"
-                            style="font-size: 30px; color: black"></i></a>
+                            style="font-size: 30px; color:white"></i></a>
                     </div>
                     <div style="float: left; width: 10%">
                         <a href="#"><i class="fa fa-linkedin"
-                            style="font-size: 30px; color: black"></i></a>
+                            style="font-size: 30px; color:white"></i></a>
                     </div>
                     <div style="float: left; width: 10%">
                         <a href="#"><i class="fa fa-github"
-                            style="font-size: 30px; color: black"></i></a>
+                            style="font-size: 30px; color:white"></i></a>
                     </div>
                 </div>
             </div>

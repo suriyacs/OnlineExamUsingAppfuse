@@ -53,14 +53,7 @@
                  
             </script>
         </c:if>
-        <div id="grid"></div>
-        <div class="content">
             <div class="container">
-                <div class="head">
-                    <h1 class="title">
-                        <fmt:message key="heading.name"/>
-                    </h1>
-                </div>
                 <div class="wrapper">
                     <div class="mainpage">
                         <a href="/home" class="btn btn-success" title="mainpage">
@@ -170,7 +163,7 @@
                     <div class="form">
                         <div class="tab-content" style="margin: 25px">
                             <div id="signup">
-                                <h1 style="color: black">
+                                <h1 style="color:#FFFFFF">
                                     <fmt:message key="assignquestion.heading"/>
                                 </h1>
                                 <form name="addQuestion" action="allocating" method="post" onsubmit="return validateAssignQuestionForm()">
@@ -179,7 +172,7 @@
                                             <fmt:message key="formlabel.examid"/>
                                             <span class="req">*</span>
                                         </label>
-                                        <input type="text" name="examId" autocomplete="off" />
+                                        <input type="text" name="examId" autocomplete="off" style="color:white" />
                                     </div>
                                     <div class="field-wrap">
                                         <label>
@@ -187,7 +180,7 @@
                                             <span class="req">*</span>
                                         </label>
                                         <input type="text" name="fromQuestionId"
-                                            autocomplete="off" />
+                                            autocomplete="off" style="color:white"/>
                                     </div>
                                     <div class="field-wrap">
                                         <label>
@@ -195,7 +188,7 @@
                                             <span class="req">*</span>
                                         </label>
                                         <input type="text" name="toQuestionId"
-                                            autocomplete="off" />
+                                            autocomplete="off" style="color:white"/>
                                     </div>
                                     <button type="submit" class="button button-block">
                                         <fmt:message key="button.allocate"/>
@@ -211,7 +204,6 @@
                 <script src='js/form.js'></script>
                 <script src="js/index.js"></script>
             </div>
-        </div>
     </body>
 </html>
 

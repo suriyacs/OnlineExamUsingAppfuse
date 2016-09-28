@@ -12,15 +12,17 @@
         BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous" />
 </head>
-<body>
-    <div class="logout" style="float: right">
-        <a href="logout" class="btn btn-danger" title="logout"><span
-            class="glyphicon glyphicon-log-out"></span></a>
-    </div>
+<body style="border:3px solid white">
     <% if (!(request.isUserInRole(Constants.ADMIN_ROLE))) {%>
     <c:redirect url="/gotouserpage"/>
     <% } %>
     <% if (request.isUserInRole(Constants.ADMIN_ROLE)) {%>
+    <div class="logout">
+                        <a href="logout" class="btn btn-danger" title="logout"><span
+                            class="glyphicon glyphicon-log-out"></span></a>
+    </div>
+     <div class="wrapper">
+    </div>
     <div class="container">
         <div class="row">
             <a href="userform?method=Add&from=list" class="firstcolumn">

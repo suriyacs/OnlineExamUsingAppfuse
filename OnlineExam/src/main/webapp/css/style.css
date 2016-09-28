@@ -126,7 +126,7 @@ label.active .req {
 }
 
 label.highlight {
-  color:black;
+  color:white;
 }
 
 input, textarea {
@@ -181,14 +181,14 @@ textarea {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background:  #81c5fa;
+  background: #c0c1c1;
   color: black;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   -webkit-appearance: none;
 }
 .button:hover, .button:focus {
-  background: #a6d5fa;
+  background: #d8dadb;
 }
 
 .button-block {

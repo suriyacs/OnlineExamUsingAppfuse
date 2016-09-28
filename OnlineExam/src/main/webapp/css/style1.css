@@ -13,7 +13,7 @@ body{
 				position: absolute;
 				margin-left: -100px;
 				margin-top: -100px;
-				top:75%;
+				top:65%;
 				left:30%;
 			}
 			
@@ -337,15 +337,15 @@ body{
 			
 			@keyframes fade{
 				0%{
-					background:  #81c5fa;
+					background:  white;
 				}
 				
 				50%{
-					background: #81c5fa ;
+					background: white ;
 				}
 				
 				100%{
-					background:#81c5fa;
+					background:white;
 				}
 			}
 			
@@ -368,14 +368,14 @@ body{
 			
 			@-webkit-keyframes fade{
 				0%{
-					background:#81c5fa;
+					background:#3F3F3F;
 				}
 				
 				50%{
-					background:#81c5fa;
+					background:#3F3F3F;
 				}
 				
 				100%{
-					background: #81c5fa ;
+					background: #3F3F3F ;
 				}
 			}

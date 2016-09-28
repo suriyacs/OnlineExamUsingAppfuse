@@ -46,12 +46,7 @@
                 });
             </script>
         </c:if>
-        <div id="grid"></div>
-        <div class="content">
         <div class="header">
-            <h1 class="title" style="color: black">
-                <fmt:message key="heading.name"/>
-            </h1>
             <div class="logout" style="float: right">
                 <a href="logout" class="btn btn-danger" title="logout"><span class="glyphicon glyphicon-log-out"></span></a>
             </div>
@@ -67,7 +62,7 @@
                 <div class="form">
                     <div class="tab-content" style="margin: 25px">
                         <div id="signup">
-                            <h1 style="color: black">
+                            <h1 style="color: #FFFFFF">
                                 <fmt:message key="addexam.heading"/>
                             </h1>
                             <form:form action="addingexam" method="post" role="form"
@@ -113,8 +108,6 @@
                 <script src="js/index.js"></script>
             </div>
             <!--- input-form -->
-        </div>
-        <!--center-->
     </body>
 </html>
 

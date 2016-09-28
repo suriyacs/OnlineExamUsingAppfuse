@@ -1,4 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
+<html>
 <head>
     <title>
         <fmt:message key="userProfile.title"/>
@@ -11,6 +12,12 @@
         BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous" />
 </head>
+<body>
+<center>
+<div class="col-sm-1" style="color:white">
+    <h3 style="font-family:san-serif">New Admin</h3>
+</div>
+</center>
 <c:set var="delObject" scope="request">
     <fmt:message key="userList.user"/>
 </c:set>
@@ -18,17 +25,11 @@
     "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
 </script>
 <div>
-    <div class="logout" style="float: right">
-        <a href="logout" class="btn btn-danger" title="logout"><span
-            class="glyphicon glyphicon-log-out"></span></a>
-    </div>
     <div class="mainpage" style="float:left;margin:3%">
         <a href="/home" class="btn btn-success" title="mainpage">Main Page</span></a>
     </div>
 </div>
-<div class="col-sm-1">
-    <h3 style="font-family:san-serif">New Admin</h3>
-</div>
+
 <div class="col-sm-7">
     <spring:bind path="user.*">
         <c:if test="${not empty status.errorMessages}">
@@ -217,5 +218,7 @@
 <script type="text/javascript" src="
 <c:url value="/scripts/validator.jsp"/>
 "></script>
+</body>
+</html>
 
 
