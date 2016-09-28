@@ -37,6 +37,12 @@
                     <div data-p="225.00" data-po="80% 55%" style="display: none;">
                         <img data-u="image" src="img/blue.jpg" />
                     </div>
+                    <div data-p="225.00" data-po="80% 55%" style="display: none;">
+                        <img data-u="image" src="img/b6.jpg" />
+                    </div>
+                    <div data-p="225.00" data-po="80% 55%" style="display: none;">
+                        <img data-u="image" src="img/c-slide-1.jpg" />
+                    </div>
                 </div>
                 <!-- Bullet Navigator -->
                 <div data-u="navigator" class="jssorb05"

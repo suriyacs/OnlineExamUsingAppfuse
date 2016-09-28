@@ -11,6 +11,12 @@
     <link rel="stylesheet"	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/login.css">
     <script src="js/parallex.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+   <script type="text/javascript">
+    $(window).load(function() {
+	    $(".loader").fadeOut("slow");
+    })
+   </script>
     <title><decorator:title/></title>
     <t:assets type="css"/>
     <decorator:head/>
@@ -23,6 +29,7 @@
         </div>
         <decorator:getProperty property="body.class" writeEntireProperty="true"/>
         <decorator:getProperty property="body.id" writeEntireProperty="true"/>
+        <div class="loader"></div>
         <decorator:body/>
      </div>
 </body>

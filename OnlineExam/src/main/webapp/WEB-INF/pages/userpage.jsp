@@ -78,7 +78,7 @@
                         <c:forEach items="${exams}" var="exam">
                             <tr>
                                 <td>
-                                    <a id="load_home" href="#demo<c:out value="${Choice ? '' : count}"/>" class="btn btn-info btn-lg" data-toggle="collapse">
+                                    <a id="load_home" href="#demo<c:out value="${Choice ? '' : count}"/>" class="btn btn-info btn-lg" data-toggle="collapse" style="width:130%">
                                     <c:out value="${exam.getExamName()}" />
                                     </a>
                                 </td>
