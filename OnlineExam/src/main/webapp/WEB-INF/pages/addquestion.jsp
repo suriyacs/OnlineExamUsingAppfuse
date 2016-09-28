@@ -17,8 +17,8 @@
         <script src="js/sweetalert2.min.js"></script>
         <script src="js/sweetalert2.js"></script>
         <script src="js/jquery-1.11.3.min.js"></script>
-        <script src="js/questionvalidation.js"></script>
-        <script src="js/checkifcorrect.js"></script>
+        <script src="js/questionform.validate.js"></script>
+        <script src="js/checkbox.validate.js"></script>
         <script>
             $(function() {
             	$('#colorselector').change(function() {
@@ -96,7 +96,7 @@
                                         <fmt:message key="questiontextbox.name"/>
                                     </span>
                                 </th>
-                                <td><textarea name="questionname"></textarea></td>
+                                <td><textarea name="questionname" required="required"></textarea></td>
                                 <td>
                                 </td>
                             </tr>
@@ -106,7 +106,7 @@
                                         <fmt:message key="answertextbox.name"/>
                                     </span>
                                 </th>
-                                <td><input type="text" name="answer"></td>
+                                <td><input type="text" name="answer" required="required"></td>
                                 <td><input type="hidden" name="checkbox" value="1"></td>
                             </tr>
                             <tr>

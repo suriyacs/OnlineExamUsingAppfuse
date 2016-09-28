@@ -51,8 +51,8 @@ public class QuestionTypeDaoHibernate extends GenericDaoHibernate<QuestionType, 
         try {
             questionType = (QuestionType) getSession().get(QuestionType.class, typeId);
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in retrieveTypeDetailById method in QuestionTypeDao" + e);
-            throw new DataException("Cannot able retrieve details for given typeId" + " " + typeId);
+            throw new DataException("Cannot able retrieve details for given typeId" 
+                + " " + typeId + "," + e);
         } 
         return questionType;
     }
@@ -79,9 +79,8 @@ public class QuestionTypeDaoHibernate extends GenericDaoHibernate<QuestionType, 
             getSession().save(questionType);
             getSession().save(question);
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in allocateQuestionToQuestionType method in QuestionTypeDao" + e);
             throw new DataException("Cannot able to allocate questionId" + " " + question.getQuestionId()
-                  + "to questionType" + " " + questionType.getTypeId());
+                  + "to questionType" + " " + questionType.getTypeId() + "," + e);
         } 
     }
 }

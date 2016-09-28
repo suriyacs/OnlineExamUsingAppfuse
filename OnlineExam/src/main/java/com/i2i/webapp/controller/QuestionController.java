@@ -13,6 +13,7 @@ import com.i2i.model.Choice;
 import com.i2i.model.Question;
 import com.i2i.service.ChoiceManager;
 import com.i2i.service.QuestionManager;
+import com.i2i.util.FileUtil;
 
 /**
  * <p>
@@ -80,6 +81,7 @@ public class QuestionController {
             model.addAttribute("SuccessMessage", "Added Successfully..!!");
         } catch (DataException e) {
             model.addAttribute("insertQuestionMessage", (e.toString()));
+            FileUtil.logError(e.toString());
         } catch (NumberFormatException e) {
             model.addAttribute("insertQuestionMessage", "Error occured during conversion of questionType" + " " + questionType);
         }
@@ -141,6 +143,7 @@ public class QuestionController {
             model.addAttribute("SuccessMessage", correctAnswer + " " + "InserTion Success");
         } catch (DataException e) {
             model.addAttribute("insertQuestionMessage", (e.toString()));
+            FileUtil.logError(e.toString());
         } catch (NumberFormatException e) {
             model.addAttribute("insertQuestionMessage",
                     "Error occured during conversion of correctAnswer" + " " + correctAnswer + " " + "in insert fill up page");

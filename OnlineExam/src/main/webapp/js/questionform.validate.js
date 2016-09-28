@@ -43,7 +43,7 @@ function checkChooseCheckBoxes() {
 	        vals[i] = checkboxes[i].value;
 	    }
 	}
-	if(vals.length <= 0) {
+	if(vals.length <= 0 || vals.length > 1) {
 		swal({ 
 			  title: "Error",
 			   text: "Please Choose One Correct Answer",

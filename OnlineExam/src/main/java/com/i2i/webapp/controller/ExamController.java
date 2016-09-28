@@ -20,6 +20,7 @@ import com.i2i.service.ExamManager;
 import com.i2i.service.QuestionManager;
 import com.i2i.service.ResultManager;
 import com.i2i.service.UserManager;
+import com.i2i.util.FileUtil;
 
 /**
  * <p>
@@ -94,6 +95,7 @@ public class ExamController {
             Message.addAttribute("SuccessMessage", "Added Successfully..!!");
         } catch (DataException e) {
             Message.addAttribute("InsertExamMessage", (e.getMessage().toString()));
+            FileUtil.logError(e.toString());
         } 
         return "addexam";
     }
@@ -143,6 +145,7 @@ public class ExamController {
             model.addAttribute("allocateMessage", "AllocatedSuccessfully..!!");
         } catch (DataException e) {
             model.addAttribute("ErrorMessage", e.getMessage().toString());
+            FileUtil.logError(e.toString());
         }
         return ("assignquestions");
     }
@@ -168,6 +171,7 @@ public class ExamController {
             model.addAttribute("examList", examManager.getAllExamDetails());
         } catch (DataException e) {
             model.addAttribute("ErrorMessage", e.getMessage().toString());
+            FileUtil.logError(e.toString());
         }
         return ("assignquestions");
     }
@@ -195,6 +199,7 @@ public class ExamController {
             model.addAttribute("exams", examManager.getAllExamDetails());
         } catch (DataException e) {
             model.addAttribute("ExamMessage", e.toString());
+            FileUtil.logError(e.toString());
         }
         return "userpage";
     }
@@ -285,6 +290,7 @@ public class ExamController {
             model.addAttribute("exam", exam);
         } catch (DataException e) {
             model.addAttribute("questionMessage", (e.getMessage().toString()));
+            FileUtil.logError(e.toString());
         } catch (NumberFormatException e) {
             model.addAttribute("questionMessage",
                     "Error occured during conversion of testId" + " " + testId + " " + "while allocting the exam");
@@ -321,6 +327,7 @@ public class ExamController {
             model.addAttribute("mark",resultManager.calculateResult(exam, examId, user));
         } catch (DataException e) {
             model.addAttribute("mark", e.getMessage().toString());
+            FileUtil.logError(e.toString());
         }
         return "userpage";
     }

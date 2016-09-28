@@ -50,8 +50,7 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
         try {
             return (int) getSession().save(question);
         } catch (HibernateException e) {
-            FileUtil.logError("Error occured in insertQuestion method in QuestionDao" + e);
-            throw new DataException("Cannot able to add Question. Kindly try again");
+            throw new DataException("Cannot able to add Question. Kindly try again." + "," + e);
         } 
     }
 
@@ -76,9 +75,9 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
            QuestionType questionType = (QuestionType) getSession().get(QuestionType.class, typeId);
            question.setTypeId(questionType);
         } catch (HibernateException e) {
-            FileUtil.logError("Error occured in assignQuestionType method in QuestionDao" + e);
             throw new DataException(
-                   "Error occured while assigning typeId" + " " + typeId + " " + "to questionId" + " " + questionId);
+                   "Error occured while assigning typeId" + " " + typeId + " " + "to questionId" 
+                       + " " + questionId + "," + e);
         } 
     }
 
@@ -100,8 +99,8 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
         try {
             return (Question) getSession().get(Question.class, questionId);
         } catch (HibernateException e) {
-            FileUtil.logError("Error occured in retrieveQuestionDetailById method in QuestionDao" + e);
-            throw new DataException("Error occured while retrieving details for given questionId" + " " + questionId);
+            throw new DataException("Error occured while retrieving details for given questionId"
+                + " " + questionId + "," + e);
         } 
     }
 
@@ -122,8 +121,8 @@ public class QuestionDaoHibernate extends GenericDaoHibernate<Question, Integer>
         try {
             return getSession().createQuery("from Question").list();
         } catch (HibernateException e) {
-            FileUtil.logError("Error occured in retrieveAllQuestions method in QuestionDao" + e);
-            throw new DataException("Error occured while retrieving details for all questions");
+            throw new DataException("Error occured while retrieving details for all questions." 
+                + "," + e);
         } 
     }
 }

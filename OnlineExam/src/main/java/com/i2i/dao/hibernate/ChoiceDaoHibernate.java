@@ -50,8 +50,7 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
         try {
             return (int) getSession().save(choice);
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in insertChoice method in ChoiceDao" + e);
-            throw new DataException(e.getMessage());
+            throw new DataException("Cannot able to insert answers for given question." + "," + e);
         } 
     }
 
@@ -73,8 +72,7 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
         try {
             return (Choice) getSession().get(Choice.class, choiceId);
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in retrieveChoiceDetailById method in ChoiceDao" + e);
-            throw new DataException("Cannot able to retrieve details for choiceId" + " " + choiceId);
+            throw new DataException("Cannot able to retrieve details for choiceId" + " " + choiceId + "," + e);
         }
     }
 
@@ -99,9 +97,8 @@ public class ChoiceDaoHibernate extends GenericDaoHibernate<Choice, Integer> imp
             Question question = (Question) getSession().get(Question.class, questionId);
             choice.setQuestionId(question);
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in assignQuestion method in ChoiceDao" + e);
             throw new DataException("Error occured whilie allocating questionId" + " " + questionId + " "
-                   + "to choiceId" + " " + choiceId);
+                   + "to choiceId" + " " + choiceId + "," + e);
         } 
     }
 }

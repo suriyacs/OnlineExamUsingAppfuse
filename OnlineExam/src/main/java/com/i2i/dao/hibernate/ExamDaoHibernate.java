@@ -53,8 +53,7 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
         try {
             return (int)getSession().save(exam);
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in insertExamDetails method in ExamDao" + e);
-            throw new DataException("Error occured while adding exam details");
+            throw new DataException("Error occured while adding exam details." + "," + e);
         }
     }
 
@@ -75,8 +74,8 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
         try {
             return getSession().createQuery("from Exam").list();
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in retrieveAllExamDetails method in ExamDao" + e);
-            throw new DataException("Error occured while retrieving all exam details. Kindly try again");
+            throw new DataException("Error occured while retrieving all exam details. Kindly try again."
+                + "," + e);
         } 
     }
 
@@ -110,8 +109,8 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
                 getSession().save(question);
             }
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in assignQuestionsToExam method in ExamDao" + e);
-            throw new DataException("Cannot able to assign questionId" + " " + questionId + " " + "to examId" + " " + examId);
+            throw new DataException("Cannot able to assign questionId" + " " + questionId 
+                + " " + "to examId" + " " + examId + "," + e);
         } 
     }
 
@@ -162,9 +161,8 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
             user.setExams(examSet);
             return true;
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in assignUserToExam method in ExamDao" + e);
-            throw new DataException(
-                    "Error occured while allocation userId" + " " + userId + " " + "to examId" + " " + examId);
+            throw new DataException("Error occured while allocation userId" + " " + userId + " " 
+                + "to examId" + " " + examId + "," + e);
         }
     }   
 
@@ -182,13 +180,12 @@ public class ExamDaoHibernate extends GenericDaoHibernate<Exam, Long> implements
      *     Throws an exception if inputs are invalid or if any Hibernate
      *     Exception is raised during database connection.
      */
-
     public Exam retrieveExamById(int examId) throws DataException {
         try {
             return (Exam) getSession().get(Exam.class, examId);
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in retrieveExamById method in ExamDao" + e);
-            throw new DataException("Error occured while retreieving exam details for given examId" + " " + examId);
+            throw new DataException("Error occured while retreieving exam details for given examId" 
+                + " " + examId + "," + e);
         } 
     }
 }

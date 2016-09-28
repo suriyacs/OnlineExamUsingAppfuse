@@ -41,8 +41,7 @@ public class ResultDaoHibernate extends GenericDaoHibernate<Result, Integer> imp
         try {
             getSession().save(result);
         } catch (HibernateException e) {
-            FileUtil.logError("Exception occured in storeResult method in ResultDao" + e);
-            throw new DataException("Cannot able to store calculated result.");
+            throw new DataException("Cannot able to store calculated result." + "," + e);
         }
     }
 }

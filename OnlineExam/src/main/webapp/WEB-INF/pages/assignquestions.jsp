@@ -1,5 +1,3 @@
-
-
 <%@ include file="/common/taglibs.jsp"%>
 <html>
     <head>
@@ -22,7 +20,7 @@
         <script src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/jssor.slider-21.1.5.mini.js"></script>
         <script src="js/parallex.js"></script>
-        <script src="js/assignquestion.js"></script>
+        <script src="js/assignquestionform.validate.js"></script>
     </head>
     <body>
         <c:if test="${null != ErrorMessage }">
@@ -185,7 +183,7 @@
                                     </div>
                                     <div class="field-wrap">
                                         <label>
-                                            <fmt:message key="formlabel.formquestionid"/>
+                                            <fmt:message key="formlabel.fromquestionid"/>
                                             <span class="req">*</span>
                                         </label>
                                         <input type="text" name="fromQuestionId"
