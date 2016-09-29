@@ -121,7 +121,7 @@
                                     <label>
                                         Answer:
                                         <form:input type="text"
-                                            path="answers[${status.index}].userAnswer" />
+                                            path="answers[${status.index}].userAnswer" autocomplete="off"/>
                                     </label>
                                 </c:if>
                                 <c:if test="${type.getTypeId()==2}">

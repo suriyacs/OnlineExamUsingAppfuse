@@ -313,15 +313,15 @@
             <div class="footer-right">
                 <div class="footer-icons">
                     <div style="float: left; width: 10%">
-                        <a href="#"><i class="fa fa-facebook"
+                        <a href="https://www.facebook.com/Ideas2itTechnologies/?fref=ts"><i class="fa fa-facebook"
                             style="font-size: 30px; color:white"></i></a>
                     </div>
                     <div style="float: left; width: 10%">
-                        <a href="#"><i class="fa fa-twitter"
+                        <a href="https://twitter.com/ideas2it"><i class="fa fa-twitter"
                             style="font-size: 30px; color:white"></i></a>
                     </div>
                     <div style="float: left; width: 10%">
-                        <a href="#"><i class="fa fa-linkedin"
+                        <a href="https://www.linkedin.com/company/2298803?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A2298803%2Cidx%3A1-1-1%2CtarId%3A1475078405834%2Ctas%3Aideas2it"><i class="fa fa-linkedin"
                             style="font-size: 30px; color:white"></i></a>
                     </div>
                     <div style="float: left; width: 10%">

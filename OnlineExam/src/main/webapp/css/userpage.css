@@ -7,7 +7,6 @@
 div .well {
     width: 25%;
     float: left;
-    margin-left:0%;
     background:none;
     border:none;
 }
@@ -64,7 +63,10 @@ img {
 input[type=submit] {
   display:none;
 }
-
 input[type=checkbox]:checked ~ input[type=submit] {
   display:block;
+}
+table.buttontable {
+    border-collapse:separate;
+    border-spacing:0 20px;
 }

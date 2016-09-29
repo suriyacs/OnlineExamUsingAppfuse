@@ -71,7 +71,7 @@
                             <tr>
                                 <td>
                                     <a id="load_home" href="#demo<c:out value="${Choice ? '' : count}"/>" class="btn btn-info btn-lg"
-                                         data-toggle="collapse" style="width:200%">
+                                         data-toggle="collapse">
                                     <c:out value="${exam.getExamName()}" />
                                     </a>
                                 </td>
