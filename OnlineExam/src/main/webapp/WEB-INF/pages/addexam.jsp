@@ -21,6 +21,7 @@
         <script src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/jssor.slider-21.1.5.mini.js"></script>
         <script src="js/parallex.js"></script>
+        <script src="js/addexamform.validate.js"></script>
     </head>
     <body>
         <c:if test="${ null != SuccessMessage }">
@@ -66,7 +67,7 @@
                                 <fmt:message key="addexam.heading"/>
                             </h1>
                             <form:form action="addingexam" method="post" role="form"
-                                class="form" modelAttribute="exam">
+                                class="form" modelAttribute="exam" name="addExam" onsubmit="return validateAssignQuestionForm()">
                                 <div class="top-row">
                                     <div class="field-wrap">
                                         <label>
@@ -74,7 +75,7 @@
                                             <span class="req">*</span>
                                         </label>
                                         <form:input path="examName" name="examname"
-                                            required="required" class="form-control"
+                                            class="form-control"
                                             title="Enter words only"></form:input>
                                     </div>
                                     <div class="field-wrap">

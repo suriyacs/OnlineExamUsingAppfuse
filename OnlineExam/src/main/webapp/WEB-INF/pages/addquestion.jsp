@@ -83,7 +83,7 @@
                             <fmt:message key="questiontype.thirdtype"/>
                         </option>
                     </select>
-                </div>
+                </div><br><br>
             </center>
             <div id="fill" class="colors" style="display: none">
                 <div class="well">
@@ -148,7 +148,7 @@
                                         <c:out
                                             value="${Choice ? '' : count}" />
                                     </th>
-                                    <td><input name="choices[${status.index}].choiceName"
+                                    <td><input type="text" name="choices[${status.index}].choiceName"
                                         value="${choice.choiceName}" required="required"></td>
                                     <th>
                                         <span>
@@ -209,7 +209,7 @@
                                         <c:out
                                             value="${Choice ? '' : count}" />
                                     </th>
-                                    <td><input name="choices[${status.index}].choiceName"
+                                    <td><input type="text" name="choices[${status.index}].choiceName"
                                         value="${choice.choiceName}" required="required"></td>
                                     <th>
                                         <span>

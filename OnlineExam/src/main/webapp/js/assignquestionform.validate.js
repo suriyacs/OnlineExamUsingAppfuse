@@ -3,7 +3,9 @@ function validateAssignQuestionForm() {
     var fromQuestionId = document.forms["addQuestion"]["fromQuestionId"].value;
     var toQuestionId = document.forms["addQuestion"]["toQuestionId"].value;
     var numbers = /^[0-9]+$/;
-    if (examId == null || examId == "" && fromQuestionId == null || fromQuestionId == "" && toQuestionId == null || toQuestionId == "") {
+    if (examId == null || examId == "" 
+        && fromQuestionId == null || fromQuestionId == "" 
+        && toQuestionId == null || toQuestionId == "") {
         swal({
             title: "Error",
             text: "Please fillout all the fields",
@@ -49,6 +51,13 @@ function validateAssignQuestionForm() {
         swal({
             title: "Error",
             text: "ToQuestionId must be a number..!!",
+            type: "error"
+        });
+        return false
+    } else if (fromQuestionId < 1 || toQuestionId < 1) {
+        swal({
+            title: "Error",
+            text: "Kindly provide Number other than ZERO",
             type: "error"
         });
         return false

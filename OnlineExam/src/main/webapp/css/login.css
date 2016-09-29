@@ -1,3 +1,4 @@
+/*Style for login*/
 #grid {
     background-image:url("../img/3.png");
     position:fixed;
@@ -119,4 +120,11 @@
       height:600px;
       width:1300px;
     }
-  
+.well {
+    width:65%;
+    margin-left:15%;
+     color:black !important;
+}
+input[type=text], textarea {
+  color:black !important;
+}
