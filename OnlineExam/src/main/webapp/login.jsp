@@ -14,9 +14,10 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/socialbuttons.css">
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <link rel="stylesheet" href="css/sweetalert2.css">
-    <link rel="stylesheet"	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet"	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/imageslider.js"></script>
     <script type="text/javascript" src="js/jssor.slider-21.1.5.mini.js"></script>
@@ -71,12 +72,12 @@
                                 <fmt:message key="errors.password.mismatch"/>
                             </div>
                         </c:if>
-                        <input type="text" name="j_username" id="j_username" class="form-control"
+                        <input type="text" style="font-size:15px;" name="j_username" id="j_username" class="form-control"
                             placeholder="<fmt:message key="label.username"/>" required tabindex="1"><br>
-                        <input type="password" class="form-control" name="j_password" id="j_password" tabindex="2"
+                        <input type="password" style="font-size:15px;" class="form-control" name="j_password" id="j_password" tabindex="2"
                             placeholder="<fmt:message key="label.password"/>" required>
                         <c:if test="${appConfig['rememberMeEnabled']}">
-                            <label for="rememberMe" class="checkbox">
+                            <label for="rememberMe" style="font-size:15px;" class="checkbox">
                                 <input type="checkbox" name="_spring_security_remember_me" id="rememberMe" tabindex="3"/>
                                 <fmt:message key="login.rememberMe"/>
                             </label>
@@ -86,7 +87,7 @@
                         </button>
                         <button type="reset" class="btn btn-lg btn-warning">Reset</button>
                     </form>
-                    <p>
+                    <p style="font-size:15px;">
                         <fmt:message key="login.signup">
                             <fmt:param>
                                 <c:url value="/signup"/>
@@ -96,7 +97,7 @@
                     <c:set var="scripts" scope="request">
                         <%@ include file="/scripts/login.js"%>
                     </c:set>
-                    <p>
+                    <p style="font-size:15px;">
                         <fmt:message key="login.passwordHint"/>
                     </p>
                     <p>
@@ -300,33 +301,45 @@
         <div class="container">
             <br>
             <div class="address" style="float: left;margin:auto;">
-                <i class="fa fa-map-marker" style="font-size: 48px; color: white"></i><br>
+                <i class="fa fa-map-marker" style="font-size: 40px; color: white"></i><br>
                 <p>
-                    <span>21 RR Towers5,TVK Industrial Estate</span> Gundy,Chennai
+                    <span style="font-size:15px;">21 RR Towers5,TVK Industrial Estate,Gundy,Chennai</span> 
                 </p>
             </div>
             <div style="float: left; width: 30%">
                 <i class="fa fa-phone" style="font-size: 30px; color: white;"></i>
-                <p>+917502169393</p>
-                <p>+918807277030</p>
+                <p style="font-size:15px;">+917502169393</p>
+                <p style="font-size:15px;">+918807277030</p>
             </div>
             <div class="footer-right">
-                <div class="footer-icons">
+                <div class="social-buttons">
                     <div style="float: left; width: 10%">
-                        <a href="https://www.facebook.com/Ideas2itTechnologies/?fref=ts"><i class="fa fa-facebook"
-                            style="font-size: 30px; color:white"></i></a>
+                        <a href="https://www.facebook.com/Ideas2itTechnologies/?fref=ts" target="_blank" class="social-button facebook" title="Facebook">
+                        <i class="fa fa-facebook"
+                            style="font-size: 25px;"></i></a>
                     </div>
                     <div style="float: left; width: 10%">
-                        <a href="https://twitter.com/ideas2it"><i class="fa fa-twitter"
-                            style="font-size: 30px; color:white"></i></a>
+                        <a href="https://twitter.com/ideas2it" target="_blank" class="social-button twitter" title="Twitter"><i class="fa fa-twitter"
+                            style="font-size: 25px;"></i></a>
                     </div>
                     <div style="float: left; width: 10%">
-                        <a href="https://www.linkedin.com/company/2298803?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A2298803%2Cidx%3A1-1-1%2CtarId%3A1475078405834%2Ctas%3Aideas2it"><i class="fa fa-linkedin"
-                            style="font-size: 30px; color:white"></i></a>
+                        <a href="https://www.linkedin.com/company/2298803?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%
+                             3A2298803%2Cidx%3A1-1-1%2CtarId%3A1475078405834%2Ctas%3Aideas2it" target="_blank" class="social-button LinkedIn" title="LinkedIn">
+                             <i class="fa fa-linkedin"
+                            style="font-size: 25px;"></i></a>
                     </div>
                     <div style="float: left; width: 10%">
-                        <a href="#"><i class="fa fa-github"
-                            style="font-size: 30px; color:white"></i></a>
+                         <a href="#" class="social-button google" title="Gmail">
+                               <i class="fa fa-google" style="font-size: 25px;"></i>
+                         </a>
+                    </div>
+                    <div style="float: left; width: 10%">
+                        <a href="#" class="social-button github" title="Github"><i class="fa fa-github"
+                            style="font-size: 25px;" target="_blank"></i></a>
+                    </div>
+                    <div style="float: left; width: 10%">
+                        <a href="#" class="social-button skype" title="Skype"><i class="fa fa-skype"
+                            style="font-size: 25px;" target="_blank"></i></a>
                     </div>
                 </div>
             </div>
@@ -336,12 +349,13 @@
             <br>
             <br>
             <div class="copyright">
-                <p>
-                    2016 TechAssess. All Rights Reserved | Design by <a href="#"
+                <p style="font-size:15px;">
+                    2016 Tech Assess. All Rights Reserved | Design by <a href="#"
                         target="_blank">Tech Assess</a>
                 </p>
             </div>
         </div>
+        <script src="js/socialbuttons.js"></script>
     </section>
 </body>
 </html>

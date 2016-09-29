@@ -21,12 +21,13 @@
     <t:assets type="css"/>
     <decorator:head/>
 </head>
+<div class="heading" style="border:none">
+              <h1 class="title" style="color:white;"><fmt:message key="heading.name"/></h1>
+</div>
 <body class="default">
     <div id="grid"></div>
      <div class="content">
-        <div class="page-header" style="border:none">
-              <h1 class="title" style="color:white"><fmt:message key="heading.name"/></h1>
-        </div>
+       
         <decorator:getProperty property="body.class" writeEntireProperty="true"/>
         <decorator:getProperty property="body.id" writeEntireProperty="true"/>
         <div class="loader"></div>

@@ -19,19 +19,20 @@
 
 .content{
 				width:100%;
-				border-radius:900px;
 				text-align:left;
 				position:relative;
-				margin:15px auto;
 				z-index:2;
 				height:100%;
-			}
+	}
 			
-.header {
+.heading {
     font-style:italic;
     color:white;
     font-size:20px;
     font-family: helvatica;
+    position:relative;
+    z-index:2;
+    width:100%;
 }
  .title {
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -110,8 +111,9 @@
    height:20%;
    width:100%;
    text-align:center;
-   background-color:#303132 ;
-   color:white;
+   border-top:1px solid white;
+   background-color:rgba(255,255,255,0.1);
+   font-style:italic;
    }
    .center {
       height:600px;
