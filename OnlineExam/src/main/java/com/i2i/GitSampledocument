@@ -14,3 +14,17 @@ protected $webserviceParameters = array(
 			'id_customer' => 			array('xlink_resource' => 'customers', 'required' => true),
 	      	),
 	);
+
+	public function add($autodate = true, $nullValues = false)
+	{
+		if (parent::add($autodate, $nullValues))
+		{
+			// Flush cache when we adding a new specific price
+			self::$_specificPriceCache = array();
+			Product::flushPriceCache();
+			// Set cache of feature detachable to true
+			Configuration::updateGlobalValue('PS_SPECIFIC_PRICE_FEATURE_ACTIVE', '1');
+			return true;
+		}
+		return false;
+	}
