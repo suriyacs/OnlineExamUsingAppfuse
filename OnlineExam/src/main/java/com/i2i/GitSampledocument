@@ -28,3 +28,7 @@ protected $webserviceParameters = array(
 		}
 		return false;
 	}
+ Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_ALL);
+ Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_SHIPPING);
+ Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_REDUCTION);
+ Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_GIFT);
