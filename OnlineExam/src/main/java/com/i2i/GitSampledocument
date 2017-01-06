@@ -28,6 +28,20 @@ protected $webserviceParameters = array(
 		}
 		return false;
 	}
+
+	public function add($autodate = true, $nullValues = false)
+	{
+		if (parent::add($autodate, $nullValues))
+		{
+			// Flush cache when we adding a new specific price
+			self::$_specificPriceCache = array();
+			Product::flushPriceCache();
+			// Set cache of feature detachable to true
+			Configuration::updateGlobalValue('PS_SPECIFIC_PRICE_FEATURE_ACTIVE', '1');
+			return true;
+		}
+		return false;
+	}
  Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_ALL);
  Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_SHIPPING);
  Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_REDUCTION);
