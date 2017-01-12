@@ -1,0 +1,48 @@
+suriyakumarcs inserted document for git practising...
+protected $webserviceParameters = array(
+		'objectsNodeName' => 'specific_prices',
+		'objectNodeName' => 'specific_price',
+	        'fields' => array(
+			'id_shop_group' => 			array('xlink_resource' => 'shop_groups'),
+			'id_shop' => 				array('xlink_resource' => 'shops', 'required' => true),
+			'id_cart' => 				array('xlink_resource' => 'carts', 'required' => true),
+			'id_product' => 			array('xlink_resource' => 'products', 'required' => true),
+			'id_product_attribute' => 		array('xlink_resource' => 'product_attributes'),
+			'id_currency' => 			array('xlink_resource' => 'currencies', 'required' => true),
+			'id_country' => 			array('xlink_resource' => 'countries', 'required' => true),
+			'id_group' => 				array('xlink_resource' => 'groups', 'required' => true),
+			'id_customer' => 			array('xlink_resource' => 'customers', 'required' => true),
+	      	),
+	);
+
+	public function add($autodate = true, $nullValues = false)
+	{
+		if (parent::add($autodate, $nullValues))
+		{
+			// Flush cache when we adding a new specific price
+			self::$_specificPriceCache = array();
+			Product::flushPriceCache();
+			// Set cache of feature detachable to true
+			Configuration::updateGlobalValue('PS_SPECIFIC_PRICE_FEATURE_ACTIVE', '1');
+			return true;
+		}
+		return false;
+	}
+
+	public function add($autodate = true, $nullValues = false)
+	{
+		if (parent::add($autodate, $nullValues))
+		{
+			// Flush cache when we adding a new specific price
+			self::$_specificPriceCache = array();
+			Product::flushPriceCache();
+			// Set cache of feature detachable to true
+			Configuration::updateGlobalValue('PS_SPECIFIC_PRICE_FEATURE_ACTIVE', '1');
+			return true;
+		}
+		return false;
+	}
+ Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_ALL);
+ Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_SHIPPING);
+ Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_REDUCTION);
+ Cache::clean('Cart::getCartRules' . $this->id . '-' . CartRule::FILTER_ACTION_GIFT);
